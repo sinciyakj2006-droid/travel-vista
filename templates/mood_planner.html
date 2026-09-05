@@ -515,7 +515,7 @@
                 {% if destination.image %}
 
                     <img
-                        src="{{ destination.image.url }}"
+                        src="{% static 'images/destinations/' %}{{ destination.image.name|cut:'destinations/' }}"
                         alt="{{ destination.name }}"
                     >
 
