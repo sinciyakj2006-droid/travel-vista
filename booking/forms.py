@@ -82,16 +82,7 @@ class BookingForm(forms.ModelForm):
     # TRAVELING METHOD
     # =====================================================
 
-    travel_method = forms.ChoiceField(
-        choices=Booking.TRAVEL_METHOD_CHOICES,
-        required=True,
-        widget=forms.RadioSelect(
-            attrs={
-                "class": "travel-method-radio"
-            }
-        )
-    )
-
+    
     # =====================================================
     # PAYMENT METHOD
     # =====================================================
@@ -127,7 +118,7 @@ class BookingForm(forms.ModelForm):
             "address",
             "travel_date",
             "number_of_people",
-            "travel_method",
+          
             "guide_required",
             "photography_required",
             "google_map_required",
@@ -315,23 +306,7 @@ class BookingForm(forms.ModelForm):
 
         return number
 
-    # =====================================================
-    # TRAVEL METHOD VALIDATION
-    # =====================================================
-
-    def clean_travel_method(self):
-
-        travel_method = self.cleaned_data.get(
-            "travel_method"
-        )
-
-        if not travel_method:
-
-            raise forms.ValidationError(
-                "Please select a traveling method."
-            )
-
-        return travel_method
+    
 
     # =====================================================
     # PAYMENT VALIDATION

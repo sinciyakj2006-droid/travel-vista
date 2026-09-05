@@ -951,10 +951,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="destination-card-image">
 
                     {% if destination.image %}
-
+                     <img
                         src="{% static 'images/destinations/' %}{{ destination.image.name|cut:'destinations/' }}"
                              alt="{{ destination.name }}">
-
+                     
                     {% else %}
 
                         <div class="d-flex align-items-center justify-content-center h-100 bg-light">
