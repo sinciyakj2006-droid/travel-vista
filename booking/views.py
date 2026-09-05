@@ -32,17 +32,10 @@ def create_booking(request, pk):
 
             booking.package = package
 
-            # =================================================
-            # KIDS-FRIENDLY FEATURES
-            # =================================================
-
+            # Kids-friendly features
             kids_features = request.POST.getlist("kids_features")
-
             booking.kids_features = ", ".join(kids_features)
 
-            booking.save()
-
-           
             booking.save()
 
             return render(
@@ -52,6 +45,18 @@ def create_booking(request, pk):
                     "booking_id": booking.pk
                 }
             )
+
+    else:
+        form = BookingForm()
+
+    return render(
+        request,
+        "booking/booking_form.html",
+        {
+            "package": package,
+            "form": form
+        }
+    )
 
 def create_destination_booking(request, pk):
 
