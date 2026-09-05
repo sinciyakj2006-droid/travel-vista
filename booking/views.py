@@ -10,7 +10,7 @@ from .forms import BookingForm
 from .models import Booking
 
 
-# =========================================================
+# ======================_mail()===================================
 # PACKAGE BOOKING
 # =========================================================
 
@@ -45,11 +45,10 @@ def create_booking(request, pk):
             # =================================================
             # BOOKING CONFIRMATION EMAIL
             # =================================================
+send_mail(
+    subject="Booking Confirmed - Travel Vista",
 
-            send_mail(
-                subject="Booking Confirmed - Travel Vista",
-
-                message=f"""
+    message=f"""
 Hello {booking.full_name},
 
 Your booking has been confirmed successfully! 
@@ -71,33 +70,10 @@ Regards,
 Travel Vista
 """,
 
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[booking.email],
-                fail_silently=True,
-            )
-
-            return render(
-                request,
-                "booking/booking_success.html",
-                {
-                    "booking_id": booking.pk
-                }
-            )
-
-    else:
-
-        form = BookingForm()
-
-    return render(
-        request,
-        "booking/booking_form.html",
-        {
-            "package": package,
-            "form": form
-        }
-    )
-
-
+    from_email=settings.DEFAULT_FROM_EMAIL,
+    recipient_list=[booking.email],
+    fail_silently=True,
+)
 # =========================================================
 # DESTINATION BOOKING
 # =========================================================
@@ -135,34 +111,6 @@ def create_destination_booking(request, pk):
             # BOOKING CONFIRMATION EMAIL
             # =================================================
 
-            send_mail(
-                subject="Booking Confirmed - Travel Vista",
-
-                message=f"""
-Hello {booking.full_name},
-
-Your destination booking has been confirmed successfully! 
-
-Booking Details
--------------------------
-Destination: {destination.name}
-Travel Date: {booking.travel_date}
-Number of People: {booking.number_of_people}
-Payment Method: {booking.get_payment_method_display()}
-Kids-Friendly Features: {booking.kids_features or "None selected"}
-
-Thank you for choosing Travel Vista.
-
-Have a wonderful journey! 
-
-Regards,
-Travel Vista
-""",
-
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[booking.email],
-                fail_silently=True,
-            )
 
             return render(
                 request,
