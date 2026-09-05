@@ -1,0 +1,1103 @@
+[
+{
+  "model": "home.destination",
+  "pk": 1,
+  "fields": {
+    "name": "Maldives",
+    "location": "Maldives",
+    "description": "A beautiful tropical destination famous for crystal clear waters, peaceful beaches, luxury resorts and exciting water activities.",
+    "image": "destinations/maldives.5.webp",
+    "budget": "50000.00",
+    "season": "October to April",
+    "activities": "Scuba Diving, Snorkeling, Beach Walk, Water Sports",
+    "mood": "Relax",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-01T18:16:45.995Z",
+    "updated_at": "2026-09-02T00:28:48.898Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 2,
+  "fields": {
+    "name": "Bali",
+    "location": "Indonesia",
+    "description": "Bali is a beautiful island destination known for its beaches, temples, natural landscapes and exciting travel experiences.",
+    "image": "destinations/bali.4.jpg",
+    "budget": "50000.00",
+    "season": "April to October",
+    "activities": "Beach activities, sightseeing, hiking",
+    "mood": "Relax",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T01:27:29.001Z",
+    "updated_at": "2026-09-02T01:27:29.001Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 3,
+  "fields": {
+    "name": "Singapore",
+    "location": "Singapore",
+    "description": "Singapore is a modern and vibrant city destination known for its beautiful gardens, iconic landmarks, shopping streets and exciting attractions. It is a great choice for families, students and travellers looking for a mix of culture, entertainment and modern experiences.",
+    "image": "destinations/singapore.3.jpg",
+    "budget": "45000.00",
+    "season": "February to April",
+    "activities": "City sightseeing, Gardens visit, Shopping, Theme parks",
+    "mood": "Family",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:00:00.781Z",
+    "updated_at": "2026-09-02T04:00:00.781Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 4,
+  "fields": {
+    "name": "Switzerland",
+    "location": "Switzerland",
+    "description": "Switzerland is a stunning destination famous for its snow-covered mountains, beautiful lakes, charming villages and scenic landscapes. It is an excellent choice for travellers who enjoy nature, adventure and peaceful mountain experiences.",
+    "image": "destinations/swtz.2.jpg",
+    "budget": "85000.00",
+    "season": "June to September",
+    "activities": "Mountain sightseeing, Hiking, Lake tours, Cable car rides",
+    "mood": "Nature",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:02:13.001Z",
+    "updated_at": "2026-09-02T04:02:13.001Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 5,
+  "fields": {
+    "name": "Kashmir",
+    "location": "Jammu and Kashmir, India",
+    "description": "Kashmir is a beautiful destination famous for its snow-covered mountains, peaceful lakes, green valleys and scenic landscapes. It is a wonderful choice for travellers who enjoy nature, sightseeing and relaxing mountain experiences.",
+    "image": "destinations/kash.1.jpg",
+    "budget": "35000.00",
+    "season": "March to October",
+    "activities": "Shikara ride, Mountain sightseeing, Trekking, Valley tours",
+    "mood": "Nature",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:04:08.117Z",
+    "updated_at": "2026-09-02T04:04:08.117Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 6,
+  "fields": {
+    "name": "Thailand",
+    "location": "Thailand",
+    "description": "Thailand is a vibrant travel destination famous for tropical beaches, beautiful islands, historic temples, delicious cuisine and exciting cultural experiences. It is a great choice for travellers who enjoy adventure, relaxation, sightseeing and exploring new places.",
+    "image": "destinations/thail.1.jpg",
+    "budget": "40000.00",
+    "season": "November to February",
+    "activities": "Island hopping, Beach activities, Temple visits, City sightseeing",
+    "mood": "Relax",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:09:30.151Z",
+    "updated_at": "2026-09-03T08:38:54.062Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 7,
+  "fields": {
+    "name": "Malaysia",
+    "location": "Malaysia",
+    "description": "Malaysia is a fascinating destination known for modern cities, beautiful islands, tropical rainforests and rich cultural experiences. It offers a wonderful mix of sightseeing, nature, shopping and adventure for different types of travellers.",
+    "image": "destinations/mala.1.jpg",
+    "budget": "35000.00",
+    "season": "December to March",
+    "activities": "City sightseeing, Island tours, Shopping, Nature exploration",
+    "mood": "Adventure",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:12:46.363Z",
+    "updated_at": "2026-09-02T04:12:46.363Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 8,
+  "fields": {
+    "name": "Paris",
+    "location": "Paris, France",
+    "description": "Paris is a beautiful European destination famous for its iconic landmarks, historic architecture, museums, charming streets and rich cultural experiences. It is a wonderful choice for travellers who enjoy sightseeing, art, history and exploring city life.",
+    "image": "destinations/paris.1.jpg",
+    "budget": "130000.00",
+    "season": "April to June",
+    "activities": "Landmark sightseeing, Museum visits, City tours, Shopping",
+    "mood": "Romantic",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:15:34.522Z",
+    "updated_at": "2026-09-02T04:15:34.522Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 9,
+  "fields": {
+    "name": "Bangkok",
+    "location": "Bangkok, Thailand",
+    "description": "Bangkok is a lively city known for its beautiful temples, busy markets, modern shopping centres and rich Thai culture. It is a great destination for travellers who enjoy sightseeing, food, shopping and exploring city life.",
+    "image": "destinations/bang.3.jpg",
+    "budget": "40000.00",
+    "season": "November to February",
+    "activities": "Temple visits, City sightseeing, Shopping, Market tours",
+    "mood": "Adventure",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:19:23.106Z",
+    "updated_at": "2026-09-02T04:19:23.106Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 10,
+  "fields": {
+    "name": "Japan",
+    "location": "Japan",
+    "description": "Japan is a fascinating destination known for its beautiful temples, modern cities, traditional culture, seasonal landscapes and unique travel experiences. It is a great choice for travellers interested in culture, nature, technology and sightseeing.",
+    "image": "destinations/japan.1.jpg",
+    "budget": "120000.00",
+    "season": "March to May",
+    "activities": "Temple visits, City sightseeing, Cultural experiences, Nature tours",
+    "mood": "Student",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:22:23.850Z",
+    "updated_at": "2026-09-02T04:22:23.850Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 11,
+  "fields": {
+    "name": "Manali",
+    "location": "Himachal Pradesh, India",
+    "description": "Manali is a beautiful mountain destination surrounded by snow-covered peaks, green valleys, rivers and peaceful landscapes. It is a great choice for travellers who enjoy nature, adventure, sightseeing and relaxing in the mountains.",
+    "image": "destinations/manali.1.jpg",
+    "budget": "40000.00",
+    "season": "October to June",
+    "activities": "Mountain sightseeing, Trekking, River rafting, Snow activities",
+    "mood": "Adventure",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:25:30.097Z",
+    "updated_at": "2026-09-02T04:25:30.097Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 12,
+  "fields": {
+    "name": "Varanasi",
+    "location": "Uttar Pradesh, India",
+    "description": "Varanasi is one of India's historic cities, known for its ancient ghats, the Ganges River, traditional culture and beautiful evening river views. It is a fascinating destination for travellers interested in history, culture, architecture and local experiences.",
+    "image": "destinations/varanasi.1.jpg",
+    "budget": "30000.00",
+    "season": "October to March",
+    "activities": "Ganga boat ride, Ghat sightseeing, Cultural tours, Temple visits",
+    "mood": "Family",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:28:14.643Z",
+    "updated_at": "2026-09-02T04:28:14.643Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 13,
+  "fields": {
+    "name": "Agra",
+    "location": "Uttar Pradesh, India",
+    "description": "Agra is a historic city famous for the Taj Mahal, impressive Mughal architecture and rich cultural heritage. It is an excellent destination for travellers interested in history, architecture, sightseeing and exploring India's heritage.",
+    "image": "destinations/agra.1.jpg",
+    "budget": "30000.00",
+    "season": "October to March",
+    "activities": "Taj Mahal visit, Heritage sightseeing, Fort visit, Cultural tours",
+    "mood": "Family",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:30:56.708Z",
+    "updated_at": "2026-09-02T04:30:56.708Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 14,
+  "fields": {
+    "name": "Kerala",
+    "location": "Kerala, India",
+    "description": "Kerala is a beautiful destination known for its peaceful backwaters, lush green landscapes, beaches, hill stations and rich cultural experiences. It is a wonderful choice for travellers who enjoy nature, relaxation, sightseeing and exploring local traditions.",
+    "image": "destinations/kerala.1.jpg",
+    "budget": "30000.00",
+    "season": "September to March",
+    "activities": "Backwater cruise, Beach visits, Hill station tours, Cultural experiences",
+    "mood": "Family",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:33:23.219Z",
+    "updated_at": "2026-09-02T04:33:23.219Z"
+  }
+},
+{
+  "model": "home.destination",
+  "pk": 15,
+  "fields": {
+    "name": "Ooty",
+    "location": "Tamil Nadu, India",
+    "description": "Ooty is a beautiful hill station known for its cool climate, green tea gardens, scenic mountains and peaceful surroundings. It is a great destination for travellers who enjoy nature, sightseeing and relaxing in a refreshing hill-station environment.",
+    "image": "destinations/ooty.1.jpg",
+    "budget": "25000.00",
+    "season": "October to June",
+    "activities": "Tea garden visits, Boating, Mountain sightseeing, Nature walks",
+    "mood": "Nature",
+    "is_available": true,
+    "guide_available": true,
+    "photography_available": true,
+    "google_map_available": true,
+    "hospitality_available": true,
+    "airbnb_available": true,
+    "gps_tracking_available": true,
+    "travel_with_strangers": true,
+    "created_at": "2026-09-02T04:35:57.198Z",
+    "updated_at": "2026-09-02T04:35:57.198Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 6,
+  "fields": {
+    "destination": 1,
+    "image": "destinations/gallery/maldives_ons5fMJ.1.png",
+    "created_at": "2026-09-02T00:28:48.910Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 7,
+  "fields": {
+    "destination": 1,
+    "image": "destinations/gallery/maldives.3.jpg",
+    "created_at": "2026-09-02T00:28:48.915Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 8,
+  "fields": {
+    "destination": 1,
+    "image": "destinations/gallery/maldives.4.webp",
+    "created_at": "2026-09-02T00:28:48.918Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 9,
+  "fields": {
+    "destination": 1,
+    "image": "destinations/gallery/maldives.5.webp",
+    "created_at": "2026-09-02T00:28:48.922Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 10,
+  "fields": {
+    "destination": 2,
+    "image": "destinations/gallery/bali.1.jpg",
+    "created_at": "2026-09-02T01:27:29.020Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 11,
+  "fields": {
+    "destination": 2,
+    "image": "destinations/gallery/bali.2.jpg",
+    "created_at": "2026-09-02T01:27:29.025Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 12,
+  "fields": {
+    "destination": 2,
+    "image": "destinations/gallery/bali.3.jpg",
+    "created_at": "2026-09-02T01:27:29.031Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 13,
+  "fields": {
+    "destination": 2,
+    "image": "destinations/gallery/bali.4.jpg",
+    "created_at": "2026-09-02T01:27:29.038Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 14,
+  "fields": {
+    "destination": 2,
+    "image": "destinations/gallery/bali.5.jpg",
+    "created_at": "2026-09-02T01:27:29.045Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 15,
+  "fields": {
+    "destination": 3,
+    "image": "destinations/gallery/singapore.1.jpg",
+    "created_at": "2026-09-02T04:00:00.784Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 16,
+  "fields": {
+    "destination": 3,
+    "image": "destinations/gallery/singapore.2.jpg",
+    "created_at": "2026-09-02T04:00:00.788Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 17,
+  "fields": {
+    "destination": 3,
+    "image": "destinations/gallery/singapore.3.jpg",
+    "created_at": "2026-09-02T04:00:00.793Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 18,
+  "fields": {
+    "destination": 3,
+    "image": "destinations/gallery/singapore.4.jpg",
+    "created_at": "2026-09-02T04:00:00.798Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 19,
+  "fields": {
+    "destination": 3,
+    "image": "destinations/gallery/singapore.5.jpg",
+    "created_at": "2026-09-02T04:00:00.804Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 20,
+  "fields": {
+    "destination": 4,
+    "image": "destinations/gallery/swtz.1.jpg",
+    "created_at": "2026-09-02T04:02:13.019Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 21,
+  "fields": {
+    "destination": 4,
+    "image": "destinations/gallery/swtz.3.jpg",
+    "created_at": "2026-09-02T04:02:13.026Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 22,
+  "fields": {
+    "destination": 4,
+    "image": "destinations/gallery/swtz.2.jpg",
+    "created_at": "2026-09-02T04:02:13.033Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 23,
+  "fields": {
+    "destination": 4,
+    "image": "destinations/gallery/swtz.4.jpg",
+    "created_at": "2026-09-02T04:02:13.040Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 24,
+  "fields": {
+    "destination": 4,
+    "image": "destinations/gallery/swtz.5.jpg",
+    "created_at": "2026-09-02T04:02:13.046Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 25,
+  "fields": {
+    "destination": 5,
+    "image": "destinations/gallery/kash.4.jpg",
+    "created_at": "2026-09-02T04:04:08.133Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 26,
+  "fields": {
+    "destination": 5,
+    "image": "destinations/gallery/kash.1.jpg",
+    "created_at": "2026-09-02T04:04:08.141Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 27,
+  "fields": {
+    "destination": 5,
+    "image": "destinations/gallery/kash.2.jpg",
+    "created_at": "2026-09-02T04:04:08.147Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 28,
+  "fields": {
+    "destination": 5,
+    "image": "destinations/gallery/kash.3.jpg",
+    "created_at": "2026-09-02T04:04:08.153Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 29,
+  "fields": {
+    "destination": 5,
+    "image": "destinations/gallery/kash.5.jpg",
+    "created_at": "2026-09-02T04:04:08.160Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 30,
+  "fields": {
+    "destination": 6,
+    "image": "destinations/gallery/thail.1.jpg",
+    "created_at": "2026-09-02T04:09:30.169Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 31,
+  "fields": {
+    "destination": 6,
+    "image": "destinations/gallery/thail.2.jpg",
+    "created_at": "2026-09-02T04:09:30.176Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 32,
+  "fields": {
+    "destination": 6,
+    "image": "destinations/gallery/thail.3.jpg",
+    "created_at": "2026-09-02T04:09:30.182Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 33,
+  "fields": {
+    "destination": 6,
+    "image": "destinations/gallery/thail.4.jpg",
+    "created_at": "2026-09-02T04:09:30.190Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 34,
+  "fields": {
+    "destination": 6,
+    "image": "destinations/gallery/thail.5.jpg",
+    "created_at": "2026-09-02T04:09:30.201Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 35,
+  "fields": {
+    "destination": 7,
+    "image": "destinations/gallery/mala.2.jpg",
+    "created_at": "2026-09-02T04:12:46.385Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 36,
+  "fields": {
+    "destination": 7,
+    "image": "destinations/gallery/mala.1.jpg",
+    "created_at": "2026-09-02T04:12:46.395Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 37,
+  "fields": {
+    "destination": 7,
+    "image": "destinations/gallery/mala.3.jpg",
+    "created_at": "2026-09-02T04:12:46.405Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 38,
+  "fields": {
+    "destination": 7,
+    "image": "destinations/gallery/mala.4.jpg",
+    "created_at": "2026-09-02T04:12:46.411Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 39,
+  "fields": {
+    "destination": 7,
+    "image": "destinations/gallery/mala.5.jpg",
+    "created_at": "2026-09-02T04:12:46.420Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 40,
+  "fields": {
+    "destination": 8,
+    "image": "destinations/gallery/paris.1.jpg",
+    "created_at": "2026-09-02T04:15:34.547Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 41,
+  "fields": {
+    "destination": 8,
+    "image": "destinations/gallery/paris.2.jpg",
+    "created_at": "2026-09-02T04:15:34.555Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 42,
+  "fields": {
+    "destination": 8,
+    "image": "destinations/gallery/paris.3.jpg",
+    "created_at": "2026-09-02T04:15:34.560Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 43,
+  "fields": {
+    "destination": 8,
+    "image": "destinations/gallery/paris.4.jpg",
+    "created_at": "2026-09-02T04:15:34.569Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 44,
+  "fields": {
+    "destination": 8,
+    "image": "destinations/gallery/paris.5.jpg",
+    "created_at": "2026-09-02T04:15:34.575Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 45,
+  "fields": {
+    "destination": 9,
+    "image": "destinations/gallery/bang.2.jpg",
+    "created_at": "2026-09-02T04:19:23.128Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 46,
+  "fields": {
+    "destination": 9,
+    "image": "destinations/gallery/bang.3.jpg",
+    "created_at": "2026-09-02T04:19:23.143Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 47,
+  "fields": {
+    "destination": 9,
+    "image": "destinations/gallery/bang.1.jpg",
+    "created_at": "2026-09-02T04:19:23.158Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 48,
+  "fields": {
+    "destination": 9,
+    "image": "destinations/gallery/bang.4.jpg",
+    "created_at": "2026-09-02T04:19:23.170Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 49,
+  "fields": {
+    "destination": 9,
+    "image": "destinations/gallery/bang.5.jpg",
+    "created_at": "2026-09-02T04:19:23.182Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 50,
+  "fields": {
+    "destination": 10,
+    "image": "destinations/gallery/japan.1.jpg",
+    "created_at": "2026-09-02T04:22:23.870Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 51,
+  "fields": {
+    "destination": 10,
+    "image": "destinations/gallery/japan.2.jpg",
+    "created_at": "2026-09-02T04:22:23.882Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 52,
+  "fields": {
+    "destination": 10,
+    "image": "destinations/gallery/japan.3.jpg",
+    "created_at": "2026-09-02T04:22:23.889Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 53,
+  "fields": {
+    "destination": 10,
+    "image": "destinations/gallery/japan.4.jpg",
+    "created_at": "2026-09-02T04:22:23.897Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 54,
+  "fields": {
+    "destination": 10,
+    "image": "destinations/gallery/japan.5.jpg",
+    "created_at": "2026-09-02T04:22:23.905Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 55,
+  "fields": {
+    "destination": 11,
+    "image": "destinations/gallery/manali.2.jpg",
+    "created_at": "2026-09-02T04:25:30.131Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 56,
+  "fields": {
+    "destination": 11,
+    "image": "destinations/gallery/manali.1.jpg",
+    "created_at": "2026-09-02T04:25:30.145Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 57,
+  "fields": {
+    "destination": 11,
+    "image": "destinations/gallery/manali.3.jpg",
+    "created_at": "2026-09-02T04:25:30.152Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 58,
+  "fields": {
+    "destination": 11,
+    "image": "destinations/gallery/manali.4.jpg",
+    "created_at": "2026-09-02T04:25:30.160Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 59,
+  "fields": {
+    "destination": 11,
+    "image": "destinations/gallery/manali.5.jpg",
+    "created_at": "2026-09-02T04:25:30.168Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 60,
+  "fields": {
+    "destination": 12,
+    "image": "destinations/gallery/varanasi.2.jpg",
+    "created_at": "2026-09-02T04:28:14.664Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 61,
+  "fields": {
+    "destination": 12,
+    "image": "destinations/gallery/varanasi.1.jpg",
+    "created_at": "2026-09-02T04:28:14.671Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 62,
+  "fields": {
+    "destination": 12,
+    "image": "destinations/gallery/varanasi.3.jpg",
+    "created_at": "2026-09-02T04:28:14.678Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 63,
+  "fields": {
+    "destination": 12,
+    "image": "destinations/gallery/varanasi.4.jpg",
+    "created_at": "2026-09-02T04:28:14.685Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 64,
+  "fields": {
+    "destination": 12,
+    "image": "destinations/gallery/varanasi.5.jpg",
+    "created_at": "2026-09-02T04:28:14.692Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 65,
+  "fields": {
+    "destination": 13,
+    "image": "destinations/gallery/agra.2.jpg",
+    "created_at": "2026-09-02T04:30:56.727Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 66,
+  "fields": {
+    "destination": 13,
+    "image": "destinations/gallery/agra.1.jpg",
+    "created_at": "2026-09-02T04:30:56.731Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 67,
+  "fields": {
+    "destination": 13,
+    "image": "destinations/gallery/agra.3.jpg",
+    "created_at": "2026-09-02T04:30:56.737Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 68,
+  "fields": {
+    "destination": 13,
+    "image": "destinations/gallery/agra.4.jpg",
+    "created_at": "2026-09-02T04:30:56.745Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 69,
+  "fields": {
+    "destination": 13,
+    "image": "destinations/gallery/agra.5.jpg",
+    "created_at": "2026-09-02T04:30:56.753Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 70,
+  "fields": {
+    "destination": 14,
+    "image": "destinations/gallery/kerala.3.jpg",
+    "created_at": "2026-09-02T04:33:23.227Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 71,
+  "fields": {
+    "destination": 14,
+    "image": "destinations/gallery/kerala.1.jpg",
+    "created_at": "2026-09-02T04:33:23.235Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 72,
+  "fields": {
+    "destination": 14,
+    "image": "destinations/gallery/kerala.2.jpg",
+    "created_at": "2026-09-02T04:33:23.241Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 73,
+  "fields": {
+    "destination": 14,
+    "image": "destinations/gallery/kerala.4.jpg",
+    "created_at": "2026-09-02T04:33:23.249Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 74,
+  "fields": {
+    "destination": 14,
+    "image": "destinations/gallery/kerala.5.jpg",
+    "created_at": "2026-09-02T04:33:23.256Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 75,
+  "fields": {
+    "destination": 15,
+    "image": "destinations/gallery/ooty.2.jpg",
+    "created_at": "2026-09-02T04:35:57.218Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 76,
+  "fields": {
+    "destination": 15,
+    "image": "destinations/gallery/ooty.1.jpg",
+    "created_at": "2026-09-02T04:35:57.229Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 77,
+  "fields": {
+    "destination": 15,
+    "image": "destinations/gallery/ooty.3.jpg",
+    "created_at": "2026-09-02T04:35:57.239Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 78,
+  "fields": {
+    "destination": 15,
+    "image": "destinations/gallery/ooty.4.jpg",
+    "created_at": "2026-09-02T04:35:57.249Z"
+  }
+},
+{
+  "model": "home.destinationimage",
+  "pk": 79,
+  "fields": {
+    "destination": 15,
+    "image": "destinations/gallery/ooty.5.jpg",
+    "created_at": "2026-09-02T04:35:57.257Z"
+  }
+},
+{
+  "model": "home.tourpackage",
+  "pk": 1,
+  "fields": {
+    "name": "Maldives Paradise Package",
+    "destination": 1,
+    "duration": "5 Days / 4 Nights",
+    "price": "50000.00",
+    "description": "Enjoy a beautiful Maldives vacation with comfortable accommodation, island sightseeing and relaxing beach activities.",
+    "included_services": "Hotel, Breakfast, Airport Transfer, Island Tour, Guide",
+    "is_available": true,
+    "created_at": "2026-09-02T05:04:30.141Z",
+    "updated_at": "2026-09-02T05:04:30.142Z"
+  }
+},
+{
+  "model": "home.tourpackage",
+  "pk": 2,
+  "fields": {
+    "name": "Bali Explorer",
+    "destination": 2,
+    "duration": "6 Days / 5 Nights",
+    "price": "60000.00",
+    "description": "Explore the beautiful beaches, temples and natural attractions of Bali with a comfortable and memorable travel experience.",
+    "included_services": "Hotel, Breakfast, Airport Transfer, Sightseeing, Guide",
+    "is_available": true,
+    "created_at": "2026-09-02T05:08:21.813Z",
+    "updated_at": "2026-09-02T05:08:21.813Z"
+  }
+},
+{
+  "model": "home.tourpackage",
+  "pk": 3,
+  "fields": {
+    "name": "Singapore Highlights",
+    "destination": 3,
+    "duration": "5 Days / 4 Nights",
+    "price": "45000.00",
+    "description": "Discover the modern city of Singapore with exciting attractions, beautiful gardens and unforgettable sightseeing experiences.",
+    "included_services": "Hotel, Breakfast, Airport Transfer, City Tour, Guide",
+    "is_available": true,
+    "created_at": "2026-09-02T05:09:48.800Z",
+    "updated_at": "2026-09-02T05:09:48.800Z"
+  }
+},
+{
+  "model": "home.tourpackage",
+  "pk": 4,
+  "fields": {
+    "name": "Switzerland Escape",
+    "destination": 4,
+    "duration": "7 Days / 6 Nights",
+    "price": "150000.00",
+    "description": "Experience the stunning mountains, scenic landscapes and charming cities of Switzerland on this unforgettable holiday package.",
+    "included_services": "Hotel, Breakfast, Transport, Sightseeing, Guide",
+    "is_available": true,
+    "created_at": "2026-09-02T05:11:38.166Z",
+    "updated_at": "2026-09-02T05:11:38.166Z"
+  }
+},
+{
+  "model": "home.tourpackage",
+  "pk": 5,
+  "fields": {
+    "name": "Kashmir Beauty",
+    "destination": 5,
+    "duration": "5 Days / 4 Nights",
+    "price": "35000.00",
+    "description": "Explore the beautiful valleys, lakes and mountains of Kashmir with comfortable accommodation and memorable sightseeing.",
+    "included_services": "Hotel, Breakfast, Transport, Sightseeing, Guide",
+    "is_available": true,
+    "created_at": "2026-09-02T05:13:10.291Z",
+    "updated_at": "2026-09-02T05:13:10.291Z"
+  }
+}
+]
