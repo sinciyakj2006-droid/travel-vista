@@ -1,0 +1,1790 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+            Travel Vista
+        {% endblock %}
+    </title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Our CSS -->
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+<style>
+/* NAVBAR DROPDOWN - OPEN ON HOVER */
+
+@media (min-width: 992px) {
+
+    .navbar .dropdown:hover > .dropdown-menu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .navbar .dropdown-menu {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+
+        margin-top: 0;
+        border: none;
+        border-radius: 12px;
+
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+        transition: all 0.25s ease;
+    }
+
+    .navbar .dropdown-item {
+        padding: 10px 16px;
+        border-radius: 8px;
+    }
+
+    .navbar .dropdown-item:hover {
+        background: #A8C69F;
+        color: #6C4AB6;
+    }
+
+}
+</style>
+
+<style>
+/* NAVBAR HOVER */
+@media (min-width: 992px) {
+
+    .travel-header .navbar-nav .nav-link {
+        transition: 0.3s ease;
+    }
+
+    .travel-header .navbar-nav .nav-link:hover {
+        color: #6C4AB6 !important;
+    }
+
+    /* Types of Travels dropdown on hover */
+    .travel-header .navbar-nav .dropdown:hover .dropdown-menu {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+    }
+
+    .travel-header .navbar-nav .dropdown-menu {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.25s ease;
+        margin-top: 0;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .travel-header .dropdown-item {
+        padding: 10px 16px;
+        transition: 0.2s ease;
+    }
+
+    .travel-header .dropdown-item:hover {
+        background: #A8C69F !important;
+        color: #6C4AB6 !important;
+    }
+}
+</style>
+
+<style>
+/* =========================================
+   TRAVEL VISTA BUTTON THEME
+   ONLY 2 COLOURS: PURPLE + TEAL
+   ========================================= */
+
+:root {
+    --tv-purple: #6C4AB6;
+    --tv-purple-dark: #55359A;
+
+    --tv-teal: #0D8B9A;
+    --tv-teal-dark: #08717D;
+}
+
+
+/* ================================
+   COMMON BUTTON STYLE
+   ================================ */
+
+.btn,
+button,
+.explore-btn,
+.travel-btn,
+.book-btn,
+.plan-btn {
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    padding: 10px 20px;
+    transition: all 0.25s ease !important;
+    cursor: pointer;
+}
+
+
+/* ================================
+   PURPLE BUTTONS
+   ================================ */
+
+.btn-primary,
+.explore-btn,
+.travel-btn,
+.book-btn,
+.plan-btn,
+button[type="submit"] {
+
+    background: var(--tv-purple) !important;
+    color: #ffffff !important;
+
+    border: none !important;
+
+    box-shadow:
+        0 4px 12px rgba(108, 74, 182, 0.25);
+}
+
+
+/* Purple Hover */
+
+.btn-primary:hover,
+.explore-btn:hover,
+.travel-btn:hover,
+.book-btn:hover,
+.plan-btn:hover,
+button[type="submit"]:hover {
+
+    background: var(--tv-purple-dark) !important;
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(108, 74, 182, 0.35);
+}
+
+
+/* ================================
+   TEAL BUTTONS
+   ================================ */
+
+.btn-info,
+.btn-success,
+.btn-secondary {
+
+    background: var(--tv-teal) !important;
+    color: #ffffff !important;
+
+    border: none !important;
+
+    box-shadow:
+        0 4px 12px rgba(13, 139, 154, 0.25);
+}
+
+
+/* Teal Hover */
+
+.btn-info:hover,
+.btn-success:hover,
+.btn-secondary:hover {
+
+    background: var(--tv-teal-dark) !important;
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(13, 139, 154, 0.35);
+}
+
+
+/* ================================
+   OUTLINE PURPLE BUTTON
+   ================================ */
+
+.btn-outline-primary {
+
+    background: #ffffff !important;
+    color: var(--tv-purple) !important;
+
+    border: 2px solid var(--tv-purple) !important;
+
+    box-shadow: none;
+}
+
+
+.btn-outline-primary:hover {
+
+    background: var(--tv-purple) !important;
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 15px rgba(108, 74, 182, 0.25);
+}
+
+
+/* ================================
+   OUTLINE TEAL BUTTON
+   ================================ */
+
+.btn-outline-info {
+
+    background: #ffffff !important;
+    color: var(--tv-teal) !important;
+
+    border: 2px solid var(--tv-teal) !important;
+
+    box-shadow: none;
+}
+
+
+.btn-outline-info:hover {
+
+    background: var(--tv-teal) !important;
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 15px rgba(13, 139, 154, 0.25);
+}
+
+
+/* ================================
+   BUTTON ICONS
+   ================================ */
+
+.btn i,
+button i,
+.explore-btn i,
+.travel-btn i,
+.book-btn i,
+.plan-btn i {
+
+    margin-right: 5px;
+}
+
+
+/* ================================
+   BUTTON CLICK EFFECT
+   ================================ */
+
+.btn:active,
+button:active,
+.explore-btn:active,
+.travel-btn:active,
+.book-btn:active,
+.plan-btn:active {
+
+    transform: scale(0.97);
+}
+
+
+/* ================================
+   FOCUS
+   ================================ */
+
+.btn:focus,
+button:focus {
+
+    outline: none !important;
+
+    box-shadow:
+        0 0 0 3px rgba(108, 74, 182, 0.15) !important;
+}
+
+
+/* ================================
+   DISABLED BUTTON
+   ================================ */
+
+.btn:disabled,
+button:disabled {
+
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+
+/* ================================
+   MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+
+    .btn,
+    button,
+    .explore-btn,
+    .travel-btn,
+    .book-btn,
+    .plan-btn {
+
+        padding: 9px 16px;
+        font-size: 14px;
+    }
+}
+
+
+.we-accept {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin: 25px 0 20px;
+}
+
+.we-accept > span {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.payment-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.payment-icon {
+    min-width: 48px;
+    height: 30px;
+    padding: 5px 9px;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #6C4AB6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    border: 1px solid #ffffff;
+}
+
+.payment-icon i {
+    font-size: 17px;
+}
+
+.payment-icon:hover {
+    background: #9B6DFF;
+    color: #ffffff;
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="travel-header">
+
+    <nav class="navbar navbar-expand-lg">
+
+        <div class="container">
+
+            <!-- LOGO -->
+
+            <a
+                class="navbar-brand logo"
+                href="{% url 'home' %}"
+            >
+
+                <i class="bi bi-airplane-engines"></i>
+
+                <span>
+                    Travel Vista
+                </span>
+
+            </a>
+
+
+            <!-- MOBILE MENU BUTTON -->
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <!-- NAVIGATION -->
+
+            <div
+                class="collapse navbar-collapse"
+                id="mainNavbar"
+            >
+
+                <ul class="navbar-nav mx-auto">
+
+
+                    <!-- HOME -->
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="{% url 'home' %}"
+                        >
+                            Home
+                        </a>
+
+                    </li>
+
+
+                    <!-- DESTINATIONS -->
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="{% url 'destination_list' %}"
+                        >
+                            Destinations
+                        </a>
+
+                    </li>
+
+
+                    <!-- TYPES OF TRAVELS -->
+
+                    <li class="nav-item dropdown">
+
+                        <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            id="travelTypesDropdown"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            Types of Travels
+                        </a>
+
+
+                        <ul
+                            class="dropdown-menu"
+                            aria-labelledby="travelTypesDropdown"
+                        >
+
+                            <!-- STRANGERS -->
+
+                            <li>
+
+                                <a
+                                    class="dropdown-item"
+                                    href="{% url 'strangers_trip' %}"
+                                >
+                                    <i class="bi bi-people me-2"></i>
+                                    Trip with Strangers
+                                </a>
+
+                            </li>
+
+
+                            <!-- KIDS -->
+
+                            <li>
+
+                                <a
+                                    class="dropdown-item"
+                                    href="{% url 'kids_trip' %}"
+                                >
+                                    <i class="bi bi-emoji-smile me-2"></i>
+                                    Trip with Kids
+                                </a>
+
+                            </li>
+
+
+                            <!-- SOLO -->
+
+                            <li>
+
+                                <a
+                                    class="dropdown-item"
+                                    href="{% url 'solo_trip' %}"
+                                >
+                                    <i class="bi bi-person me-2"></i>
+                                    Solo Trip
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+
+                    <!-- TOUR PACKAGES -->
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="{% url 'tour_packages' %}"
+                        >
+                            Tour Packages
+                        </a>
+
+                    </li>
+
+
+                    <!-- ABOUT -->
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="{% url 'about' %}"
+                        >
+                            About Us
+                        </a>
+
+                    </li>
+
+
+                    <!-- CONTACT -->
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="{% url 'contact' %}"
+                        >
+                            Contact Us
+                        </a>
+
+                    </li>
+
+                </ul>
+
+
+                <!-- =================================================
+                     RIGHT SIDE BUTTONS
+                ================================================= -->
+
+                <div class="header-buttons d-flex align-items-center gap-2">
+
+
+                    {% if user.is_authenticated %}
+
+                        <!-- USERNAME -->
+
+                        <span class="navbar-text fw-semibold">
+
+                            {{ user.username }}
+
+                        </span>
+
+
+                        <!-- PROFILE -->
+
+                        <a
+                            href="{% url 'profile' %}"
+                            class="btn btn-outline-primary"
+                        >
+
+                            <i class="bi bi-person-circle"></i>
+                            Profile
+
+                        </a>
+
+
+                        <!-- LOGOUT -->
+
+                        <a
+                            href="{% url 'logout' %}"
+                            class="btn btn-outline-danger"
+                        >
+
+                            <i class="bi bi-box-arrow-right"></i>
+                            Logout
+
+                        </a>
+
+                    {% endif %}
+
+
+                    <!-- PLAN MY TRIP -->
+
+                    <a
+                        href="{% url 'mood_planner' %}"
+                        class="plan-btn"
+                    >
+                        Plan My Trip
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================================
+     PAGE CONTENT
+===================================================== -->
+
+<main>
+
+    {% block content %}
+
+    {% endblock %}
+
+</main>
+
+<!-- =====================================================
+     TRAVEL VISTA CHATBOT
+===================================================== -->
+
+<div class="travel-chatbot">
+
+    <!-- CHAT WINDOW -->
+    <div class="chatbot-window" id="chatbotWindow">
+
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <div class="chatbot-icon">
+                    <i class="bi bi-airplane-engines-fill"></i>
+                </div>
+
+                <div>
+                    <h6>Travel Vista</h6>
+                    <small>Travel Assistant</small>
+                </div>
+            </div>
+
+            <button type="button"
+                    class="chatbot-close"
+                    onclick="toggleChatbot()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+
+        <!-- CHAT BODY -->
+        <div class="chatbot-body" id="chatbotBody">
+
+            <div class="bot-message">
+                <div class="message-icon">
+                    <i class="bi bi-robot"></i>
+                </div>
+
+                <div class="message-text">
+                    Hi! Welcome to Travel Vista.
+                    <br>
+                    How can I help you plan your trip?
+                </div>
+            </div>
+
+            <!-- QUICK QUESTIONS -->
+            <div class="quick-questions">
+
+                <button onclick="sendQuickMessage('Suggest a destination')">
+                    <i class="bi bi-geo-alt"></i>
+                    Suggest a destination
+                </button>
+
+                <button onclick="sendQuickMessage('Show budget friendly trips')">
+                    <i class="bi bi-wallet2"></i>
+                    Budget friendly trips
+                </button>
+
+                <button onclick="sendQuickMessage('How can I book a trip?')">
+                    <i class="bi bi-calendar-check"></i>
+                    How to book?
+                </button>
+
+                <button onclick="sendQuickMessage('What travel methods are available?')">
+                    <i class="bi bi-bus-front"></i>
+                    Travel methods
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CHAT INPUT -->
+        <div class="chatbot-input-area">
+
+            <input type="text"
+                   id="chatbotInput"
+                   placeholder="Ask about your trip..."
+                   autocomplete="off">
+
+            <button type="button"
+                    onclick="sendChatMessage()">
+                <i class="bi bi-send-fill"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FLOATING BUTTON -->
+    <button type="button"
+            class="chatbot-button"
+            id="chatbotButton"
+            onclick="toggleChatbot()">
+
+        <i class="bi bi-chat-dots-fill"></i>
+
+        <span class="chatbot-badge">1</span>
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="travel-footer">
+
+    <div class="container">
+
+        <div class="row gy-4">
+
+
+            <!-- ABOUT -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <a
+                    href="{% url 'home' %}"
+                    class="footer-logo"
+                >
+
+                    <i class="bi bi-airplane-engines"></i>
+
+                    Travel Vista
+
+                </a>
+
+
+                <p class="footer-text">
+
+                    Discover beautiful destinations,
+                    unforgettable experiences and exciting
+                    journeys with Travel Vista.
+
+                </p>
+
+
+                <!-- SOCIAL LINKS -->
+
+                <div class="social-links">
+
+                    <a href="#">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK LINKS -->
+
+            <div class="col-lg-2 col-md-6">
+
+                <h5>
+                    Quick Links
+                </h5>
+
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="{% url 'home' %}">
+                            Home
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="{% url 'destination_list' %}">
+                            Destinations
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="{% url 'tour_packages' %}">
+                            Tour Packages
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="{% url 'about' %}">
+                            About Us
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="{% url 'contact' %}">
+                            Contact
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="{% url 'customer_review' %}">
+                            Write a Review
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- POPULAR DESTINATIONS -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <h5>
+                    Popular Destinations
+                </h5>
+
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a
+                            href="{% url 'destination_list' %}?search=Maldives"
+                        >
+                            Maldives
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a
+                            href="{% url 'destination_list' %}?search=Bali"
+                        >
+                            Bali
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a
+                            href="{% url 'destination_list' %}?search=Singapore"
+                        >
+                            Singapore
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a
+                            href="{% url 'destination_list' %}?search=Switzerland"
+                        >
+                            Switzerland
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a
+                            href="{% url 'destination_list' %}?search=Kashmir"
+                        >
+                            Kashmir
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- CONTACT -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <h5>
+                    Contact Us
+                </h5>
+
+
+                <div class="contact-info">
+
+
+                    <!-- LOCATION -->
+
+                    <p>
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        Kerala, India
+
+                    </p>
+
+
+                    <!-- PHONE -->
+
+                    <p>
+
+                        <i class="bi bi-telephone"></i>
+
+                        <a href="tel:+919847074261">
+                            +91 9847074261
+                        </a>
+
+                    </p>
+
+
+                    <!-- EMAIL -->
+
+                    <p>
+
+                        <i class="bi bi-envelope"></i>
+
+                        <a
+                            href="mailto:travelvistatourism2026@gmail.com"
+                        >
+                            travelvistatourism2026@gmail.com
+                        </a>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <hr>
+
+       <!-- OUR BRANCHES SECTION -->
+<section class="branches-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <span>TRAVEL VISTA</span>
+            <h2>Our Branches</h2>
+            <p>Find us at our branches and start your journey with Travel Vista.</p>
+        </div>
+
+        <div class="branches-grid">
+
+            <!-- Kottayam -->
+            <div class="branch-card">
+                <div class="branch-icon"></div>
+                <h3>Kottayam</h3>
+                <p>Kerala, India</p>
+                <p class="branch-address">
+                    Travel Vista, Kottayam
+                </p>
+                <a href="https://www.google.com/maps/search/Kottayam+Kerala"
+                   target="_blank">
+                    View on Map →
+                </a>
+            </div>
+
+            <!-- Kochi -->
+            <div class="branch-card">
+                <div class="branch-icon"></div>
+                <h3>Kochi</h3>
+                <p>Kerala, India</p>
+                <p class="branch-address">
+                    Travel Vista, Kochi
+                </p>
+                <a href="https://www.google.com/maps/search/Kochi+Kerala"
+                   target="_blank">
+                    View on Map →
+                </a>
+            </div>
+
+           
+
+            <!-- Bangalore -->
+            <div class="branch-card">
+                <div class="branch-icon"></div>
+                <h3>Bangalore</h3>
+                <p>Karnataka, India</p>
+                <p class="branch-address">
+                    Travel Vista, Bangalore
+                </p>
+                <a href="https://www.google.com/maps/search/Bangalore+Karnataka"
+                   target="_blank">
+                    View on Map →
+                </a>
+            </div>
+
+            
+
+        </div>
+    </div>
+</section>
+
+        <!-- FOOTER BOTTOM -->
+
+        <div class="footer-bottom">
+
+            <p>
+
+                © 2026 Travel Vista.
+                All Rights Reserved.
+
+            </p>
+
+
+            <div>
+
+                <a href="{% url 'privacy_policy' %}">
+                    Privacy Policy
+                </a>
+
+                <a href="{% url 'terms_conditions' %}">
+                    Terms & Conditions
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     BOOTSTRAP JS
+===================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+<!-- Our JS -->
+
+<script
+    src="{% static 'js/script.js' %}"
+></script>
+
+<style>
+
+/* =====================================================
+   TRAVEL VISTA CHATBOT
+===================================================== */
+
+.travel-chatbot {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+}
+
+
+/* CHAT WINDOW */
+
+.chatbot-window {
+    width: 360px;
+    max-width: calc(100vw - 30px);
+    height: 500px;
+
+    background: #ffffff;
+    border-radius: 20px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+
+    overflow: hidden;
+
+    display: none;
+    flex-direction: column;
+
+    margin-bottom: 15px;
+}
+
+
+/* HEADER */
+
+.chatbot-header {
+    background: linear-gradient(
+        135deg,
+        #6C4AB6,
+        #8f70d1
+    );
+
+    color: white;
+
+    padding: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.chatbot-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.chatbot-icon {
+    width: 42px;
+    height: 42px;
+
+    background: rgba(255,255,255,0.2);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.chatbot-icon i {
+    font-size: 20px;
+}
+
+
+.chatbot-title h6 {
+    margin: 0;
+    font-size: 16px;
+}
+
+
+.chatbot-title small {
+    opacity: 0.85;
+}
+
+
+.chatbot-close {
+    border: none;
+    background: transparent;
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+
+/* CHAT BODY */
+
+.chatbot-body {
+    flex: 1;
+
+    padding: 18px;
+
+    overflow-y: auto;
+
+    background: #f8f7fc;
+}
+
+
+/* BOT MESSAGE */
+
+.bot-message {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+
+.message-icon {
+    width: 32px;
+    height: 32px;
+
+    min-width: 32px;
+
+    border-radius: 50%;
+
+    background: #6C4AB6;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.message-text {
+    background: white;
+
+    padding: 11px 14px;
+
+    border-radius: 5px 15px 15px 15px;
+
+    font-size: 14px;
+
+    color: #444;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+
+/* QUICK QUESTIONS */
+
+.quick-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.quick-questions button {
+    border: 1px solid #ddd;
+
+    background: white;
+
+    color: #6C4AB6;
+
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.quick-questions button:hover {
+    background: #f0ebfa;
+    border-color: #6C4AB6;
+}
+
+
+.quick-questions button i {
+    margin-right: 7px;
+}
+
+
+/* USER MESSAGE */
+
+.user-message {
+    display: flex;
+    justify-content: flex-end;
+
+    margin: 12px 0;
+}
+
+
+.user-message .message-text {
+    background: #6C4AB6;
+    color: white;
+
+    border-radius: 15px 5px 15px 15px;
+}
+
+
+/* INPUT */
+
+.chatbot-input-area {
+    display: flex;
+
+    padding: 12px;
+
+    border-top: 1px solid #eee;
+
+    background: white;
+}
+
+
+.chatbot-input-area input {
+    flex: 1;
+
+    border: 1px solid #ddd;
+
+    outline: none;
+
+    padding: 10px 13px;
+
+    border-radius: 20px 0 0 20px;
+
+    font-size: 14px;
+}
+
+
+.chatbot-input-area button {
+    width: 48px;
+
+    border: none;
+
+    background: #6C4AB6;
+
+    color: white;
+
+    border-radius: 0 20px 20px 0;
+
+    cursor: pointer;
+}
+
+
+.chatbot-input-area button:hover {
+    background: #56389b;
+}
+
+
+/* FLOATING BUTTON */
+
+.chatbot-button {
+    width: 62px;
+    height: 62px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #6C4AB6,
+        #8f70d1
+    );
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    box-shadow: 0 6px 20px rgba(108,74,182,0.4);
+
+    position: relative;
+
+    transition: 0.3s;
+}
+
+
+.chatbot-button:hover {
+    transform: scale(1.08);
+}
+
+
+/* BADGE */
+
+.chatbot-badge {
+    position: absolute;
+
+    top: -2px;
+    right: -2px;
+
+    width: 20px;
+    height: 20px;
+
+    background: #dc3545;
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 11px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+    .travel-chatbot {
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .chatbot-window {
+        width: calc(100vw - 30px);
+        height: 470px;
+    }
+
+}
+
+</style>
+
+<script>
+
+/* =====================================================
+   TRAVEL VISTA CHATBOT
+===================================================== */
+
+function toggleChatbot() {
+
+    const windowBox =
+        document.getElementById("chatbotWindow");
+
+    const button =
+        document.getElementById("chatbotButton");
+
+    if (windowBox.style.display === "flex") {
+
+        windowBox.style.display = "none";
+
+        button.style.display = "flex";
+        button.style.alignItems = "center";
+        button.style.justifyContent = "center";
+
+    } else {
+
+        windowBox.style.display = "flex";
+
+        button.style.display = "none";
+
+    }
+}
+
+
+/* =====================================================
+   QUICK MESSAGE
+===================================================== */
+
+function sendQuickMessage(message) {
+
+    document.getElementById("chatbotInput").value = message;
+
+    sendChatMessage();
+}
+
+
+/* =====================================================
+   SEND MESSAGE
+===================================================== */
+
+function sendChatMessage() {
+
+    const input =
+        document.getElementById("chatbotInput");
+
+    const message =
+        input.value.trim();
+
+    if (message === "") {
+        return;
+    }
+
+    addUserMessage(message);
+
+    input.value = "";
+
+    setTimeout(function () {
+
+        const reply = getBotReply(message);
+
+        addBotMessage(reply);
+
+    }, 500);
+}
+
+
+/* =====================================================
+   ADD USER MESSAGE
+===================================================== */
+
+function addUserMessage(message) {
+
+    const body =
+        document.getElementById("chatbotBody");
+
+    const div =
+        document.createElement("div");
+
+    div.className = "user-message";
+
+    div.innerHTML = `
+        <div class="message-text">
+            ${message}
+        </div>
+    `;
+
+    body.appendChild(div);
+
+    body.scrollTop = body.scrollHeight;
+}
+
+
+/* =====================================================
+   ADD BOT MESSAGE
+===================================================== */
+
+function addBotMessage(message) {
+
+    const body =
+        document.getElementById("chatbotBody");
+
+    const div =
+        document.createElement("div");
+
+    div.className = "bot-message";
+
+    div.innerHTML = `
+        <div class="message-icon">
+            <i class="bi bi-robot"></i>
+        </div>
+
+        <div class="message-text">
+            ${message}
+        </div>
+    `;
+
+    body.appendChild(div);
+
+    body.scrollTop = body.scrollHeight;
+}
+
+
+/* =====================================================
+   BOT RESPONSES
+===================================================== */
+
+function getBotReply(message) {
+
+    const text = message.toLowerCase();
+
+
+    if (
+        text.includes("destination") ||
+        text.includes("place") ||
+        text.includes("where")
+    ) {
+
+        return `
+            We have many beautiful destinations such as
+            Maldives, Bali, Singapore, Thailand, Switzerland,
+            Paris, Japan, Kashmir and Kerala.
+            <br><br>
+            You can visit our <strong>Destinations</strong>
+            page to explore them.
+        `;
+    }
+
+
+    if (
+        text.includes("budget") ||
+        text.includes("cheap") ||
+        text.includes("affordable")
+    ) {
+
+        return `
+            Sure! Travel Vista offers
+            <strong>budget-friendly travel options</strong>.
+            <br><br>
+            You can choose a trip according to your preferred
+            budget using our travel planning features.
+        `;
+    }
+
+
+    if (
+        text.includes("book") ||
+        text.includes("booking")
+    ) {
+
+        return `
+            Booking is easy!
+            <br><br>
+            1. Choose a destination or package.<br>
+            2. Click <strong>Plan My Trip</strong> or
+               <strong>Book Now</strong>.<br>
+            3. Enter your travel details.<br>
+            4. Select your payment method.<br>
+            5. Confirm your booking.
+        `;
+    }
+
+
+    if (
+        text.includes("travel method") ||
+        text.includes("transport") ||
+        text.includes("traveling method")
+    ) {
+
+        return `
+            You can select your preferred
+            <strong>Traveling Method</strong> while making
+            your booking.
+            <br><br>
+            Available options depend on the trip and destination.
+        `;
+    }
+
+
+    if (
+        text.includes("family") ||
+        text.includes("kids")
+    ) {
+
+        return `
+            For family and kids trips, check our
+            <strong>Trip with Kids</strong> option.
+            <br><br>
+            We also provide kids-friendly travel features.
+        `;
+    }
+
+
+    if (
+        text.includes("solo")
+    ) {
+
+        return `
+            Looking for a solo adventure?
+            <br><br>
+            Check our <strong>Solo Trip</strong> section
+            and explore destinations suitable for solo travellers.
+        `;
+    }
+
+
+    if (
+        text.includes("stranger") ||
+        text.includes("group")
+    ) {
+
+        return `
+            You can explore our
+            <strong>Trip with Strangers</strong> feature
+            for group travel experiences.
+        `;
+    }
+
+
+    if (
+        text.includes("contact") ||
+        text.includes("phone") ||
+        text.includes("email")
+    ) {
+
+        return `
+            You can contact Travel Vista through our
+            <strong>Contact Us</strong> page.
+            <br><br>
+            Our team will be happy to assist you.
+        `;
+    }
+
+
+    if (
+        text.includes("hello") ||
+        text.includes("hi") ||
+        text.includes("hey")
+    ) {
+
+        return `
+            Hello! Welcome to Travel Vista.
+            <br><br>
+            I can help you with destinations, bookings,
+            budget trips and travel options.
+        `;
+    }
+
+
+    return `
+        I'm here to help with your travel plans.
+        <br><br>
+        You can ask me about
+        <strong>destinations, budget trips, bookings,
+        travel methods or family trips.</strong>
+    `;
+}
+
+
+/* ENTER KEY */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const input =
+        document.getElementById("chatbotInput");
+
+    if (input) {
+
+        input.addEventListener("keydown", function (event) {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                sendChatMessage();
+
+            }
+
+        });
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

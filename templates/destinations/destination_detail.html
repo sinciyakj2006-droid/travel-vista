@@ -1,0 +1,226 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ destination.name }} | Travel Vista{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row align-items-center">
+
+        <!-- DESTINATION IMAGE -->
+        <div class="col-lg-6 mb-4">
+
+            {% if destination.image %}
+                <img src="{{ destination.image.url }}"
+                     alt="{{ destination.name }}"
+                     class="destination-main-image">
+            {% else %}
+                <img src="{% static 'images/default-destination.jpg' %}"
+                     alt="{{ destination.name }}"
+                     class="destination-main-image">
+            {% endif %}
+
+        </div>
+
+
+        <!-- DESTINATION DETAILS -->
+        <div class="col-lg-6">
+
+            <h1 class="destination-title">
+                {{ destination.name }}
+            </h1>
+
+            <p class="destination-location">
+                {{ destination.location }}
+            </p>
+
+            <p class="destination-description">
+                {{ destination.description }}
+            </p>
+
+
+            <!-- BUDGET -->
+            {% if destination.budget %}
+            <div class="detail-box">
+                <strong> Budget</strong>
+                <span>₹{{ destination.budget }}</span>
+            </div>
+            {% endif %}
+
+
+            <!-- SEASON -->
+            {% if destination.season %}
+            <div class="detail-box">
+                <strong> Best Season</strong>
+                <span>{{ destination.season }}</span>
+            </div>
+            {% endif %}
+
+
+            <!-- ACTIVITIES -->
+            {% if destination.activities %}
+            <div class="detail-box">
+                <strong> Activities</strong>
+                <span>{{ destination.activities }}</span>
+            </div>
+            {% endif %}
+
+
+            <!-- BOOK BUTTON -->
+            <a href="{% url 'create_destination_booking' destination.pk %}"
+               class="book-destination-btn">
+                 Book This Destination
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+/* Main Image */
+.destination-main-image {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Title */
+.destination-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #6C4AB6;
+    margin-bottom: 10px;
+}
+
+
+/* Location */
+.destination-location {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+
+/* Description */
+.destination-description {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 25px;
+}
+
+
+/* Detail boxes */
+.detail-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    background: #f7f5fc;
+    border-radius: 12px;
+    border-left: 4px solid #6C4AB6;
+}
+
+.detail-box strong {
+    color: #444;
+}
+
+.detail-box span {
+    color: #6C4AB6;
+    font-weight: 600;
+}
+
+
+/* Book Button */
+.book-destination-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #6C4AB6, #A8C69F);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: 600;
+    transition: 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.book-destination-btn:hover {
+    transform: translateY(-3px);
+    color: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.20);
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .destination-main-image {
+        height: 300px;
+    }
+
+    .destination-title {
+        font-size: 32px;
+    }
+
+    .destination-description {
+        font-size: 16px;
+    }
+
+    .book-destination-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+}
+
+/* BOOK THIS DESTINATION - FINAL STYLE */
+
+.destination-content .book-destination-btn,
+.book-destination-btn {
+    display: inline-block !important;
+
+    background: #7B55D3 !important;
+    color: #FFFFFF !important;
+
+    padding: 14px 30px !important;
+
+    border: none !important;
+    border-radius: 12px !important;
+
+    font-size: 16px !important;
+    font-weight: 700 !important;
+
+    text-decoration: none !important;
+
+    box-shadow: 0 6px 20px rgba(108, 74, 182, 0.35) !important;
+
+    transition: all 0.25s ease !important;
+}
+
+.destination-content .book-destination-btn:hover,
+.book-destination-btn:hover {
+    background: #6C4AB6 !important;
+    color: #FFFFFF !important;
+
+    transform: translateY(-3px) !important;
+
+    box-shadow: 0 10px 25px rgba(108, 74, 182, 0.45) !important;
+}
+
+</style>
+
+{% endblock %}
+```

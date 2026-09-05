@@ -1,0 +1,913 @@
+{% extends "base.html" %}
+
+{% block title %}Trip with Kids | Travel Vista{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* ================================
+   PAGE
+================================ */
+
+body {
+    background: #f8fbfa;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.kids-hero {
+    min-height: 470px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(0, 70, 55, .62),
+            rgba(0, 40, 35, .72)
+        ),
+        url("https://images.unsplash.com/photo-1504150558240-0b4fd8946624?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+}
+
+.kids-hero-content {
+    max-width: 850px;
+    padding: 30px 20px;
+}
+
+.kids-badge {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 30px;
+    background: rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.3);
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.kids-hero h1 {
+    font-size: 56px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.kids-hero p {
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.kids-btn {
+    display: inline-block;
+    padding: 13px 28px;
+    background: #6C4AB6;
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: .3s ease;
+}
+
+.kids-btn:hover {
+    background: #55359A;
+    color: white;
+    transform: translateY(-3px);
+}
+
+
+/* ================================
+   INTRO
+================================ */
+
+.kids-intro {
+    padding: 55px 20px 30px;
+    text-align: center;
+}
+
+.section-title {
+    color: #6C4AB6;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    max-width: 700px;
+    margin: auto;
+    color: #6d7c76;
+    line-height: 1.7;
+}
+
+.intro-box {
+    max-width: 900px;
+    margin: 30px auto 0;
+    padding: 25px 30px;
+    background: white;
+    border-radius: 18px;
+    border-left: 5px solid #0D8B9A;
+    box-shadow: 0 10px 30px rgba(0,0,0,.07);
+}
+
+
+/* ================================
+   FEATURES
+================================ */
+
+.kids-features {
+    padding: 35px 20px 65px;
+}
+
+.feature-grid {
+    max-width: 1150px;
+    margin: 35px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    /* IMPORTANT */
+    align-items: start;
+}
+
+.feature-card {
+    background: white;
+    padding: 28px 22px;
+    border-radius: 18px;
+    text-align: center;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.06);
+
+    transition: .35s ease;
+
+    /* IMPORTANT */
+    height: auto;
+    align-self: start;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 35px rgba(0,0,0,.11);
+}
+
+.feature-icon {
+    width: 62px;
+    height: 62px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e7f7f4;
+
+    font-size: 28px;
+    color: #0D8B9A;
+}
+
+.feature-card h4 {
+    color: #6C4AB6;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    color: #728079;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+/* ================================
+   DESTINATIONS
+================================ */
+
+.kids-destinations {
+    background: #edf7f3;
+    padding: 55px 20px 70px;
+}
+
+.destination-grid {
+    max-width: 1200px;
+    margin: 35px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 24px;
+
+    /* IMPORTANT */
+    align-items: start;
+}
+
+.destination-card {
+    background: white;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+
+    transition: .35s ease;
+
+    /* IMPORTANT */
+    height: auto;
+    align-self: start;
+}
+
+.destination-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0,0,0,.14);
+}
+
+
+/* ================================
+   DESTINATION IMAGE
+================================ */
+
+.destination-img {
+    width: 100%;
+    height: 215px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background: #dfeee9;
+}
+
+.destination-img img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: .5s ease;
+}
+
+.destination-card:hover img {
+    transform: scale(1.08);
+}
+
+
+/* ================================
+   BADGE
+================================ */
+
+.badge {
+    position: absolute;
+
+    top: 14px;
+    left: 14px;
+
+    background: white;
+    color: #6C4AB6;
+
+    padding: 6px 13px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* ================================
+   DESTINATION CONTENT
+================================ */
+
+.destination-info {
+    padding: 20px;
+}
+
+.destination-info h3 {
+    color: #6C4AB6;
+
+    font-size: 23px;
+    font-weight: 750;
+
+    margin: 0 0 8px;
+}
+
+.destination-info p {
+    color: #75827d;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    margin: 0 0 18px;
+}
+
+
+/* ================================
+   EXPLORE BUTTON
+================================ */
+
+.explore-btn {
+    display: inline-block;
+
+    padding: 9px 18px;
+
+    border-radius: 10px;
+
+    background: #0D8B9A;
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition: .3s ease;
+}
+
+.explore-btn:hover {
+    background: #08717D;
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* ================================
+   CTA
+================================ */
+
+.kids-cta {
+    max-width: 1150px;
+
+    min-height: 280px;
+
+    margin: 50px auto 70px;
+
+    border-radius: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: white;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            rgba(0,70,55,.76),
+            rgba(0,40,35,.82)
+        ),
+        url("https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1600&q=85")
+        center/cover;
+}
+
+.kids-cta h2 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.kids-cta p {
+    margin-bottom: 22px;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media(max-width: 900px) {
+
+    .feature-grid,
+    .destination-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .kids-hero h1 {
+        font-size: 44px;
+    }
+}
+
+
+@media(max-width: 600px) {
+
+    .feature-grid,
+    .destination-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .kids-hero {
+        min-height: 420px;
+    }
+
+    .kids-hero h1 {
+        font-size: 36px;
+    }
+
+    .kids-hero p {
+        font-size: 16px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .kids-cta {
+        margin: 30px 15px 50px;
+    }
+}
+
+</style>
+
+
+<!-- ================================
+     HERO
+================================ -->
+
+<section class="kids-hero">
+
+    <div class="kids-hero-content">
+
+        <span class="kids-badge">
+            FAMILY • FUN • ADVENTURE
+        </span>
+
+        <h1>
+            Trip with Kids
+        </h1>
+
+        <p>
+            Create happy family memories with comfortable stays,
+            exciting activities and destinations kids will love.
+        </p>
+
+        <a href="#kids-destinations" class="kids-btn">
+            Explore Kids Destinations
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     INTRO
+================================ -->
+
+<section class="kids-intro">
+
+    <h2 class="section-title">
+        Adventures the Whole Family Will Love
+    </h2>
+
+    <p class="section-subtitle">
+        Travelling with children becomes easier when the destination,
+        accommodation and activities are planned with families in mind.
+    </p>
+
+    <div class="intro-box">
+
+        <strong>
+            More fun. More comfort. More family memories.
+        </strong>
+
+        <br>
+
+        Discover destinations that offer enjoyable experiences
+        for both children and parents.
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     FEATURES
+================================ -->
+
+<section class="kids-features">
+
+    <div class="text-center">
+
+        <h2 class="section-title">
+            Family-Friendly Features
+        </h2>
+
+        <p class="section-subtitle">
+            Travel comfortably with features designed for families.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="bi bi-house-heart"></i>
+            </div>
+
+            <h4>
+                Family-Friendly Stay
+            </h4>
+
+            <p>
+                Comfortable accommodation options suitable for families.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="bi bi-egg-fried"></i>
+            </div>
+
+            <h4>
+                Kid-Friendly Food
+            </h4>
+
+            <p>
+                Find suitable food options for children during the trip.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="bi bi-bus-front"></i>
+            </div>
+
+            <h4>
+                Comfortable Transport
+            </h4>
+
+            <p>
+                Plan convenient transportation for parents and children.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="bi bi-stars"></i>
+            </div>
+
+            <h4>
+                Kids Activities
+            </h4>
+
+            <p>
+                Fun experiences and activities that children can enjoy.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="bi bi-geo-alt"></i>
+            </div>
+
+            <h4>
+                Nearby Facilities
+            </h4>
+
+            <p>
+                Easily locate useful facilities while travelling.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="bi bi-map"></i>
+            </div>
+
+            <h4>
+                Location Support
+            </h4>
+
+            <p>
+                Use maps and optional location sharing for trip coordination.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     DESTINATIONS
+================================ -->
+
+<section class="kids-destinations" id="kids-destinations">
+
+    <div class="text-center">
+
+        <h2 class="section-title">
+            Kids' Favourite Destinations
+        </h2>
+
+        <p class="section-subtitle">
+            Explore exciting places that are perfect for family adventures.
+        </p>
+
+    </div>
+
+
+    <div class="destination-grid">
+
+
+        <!-- SINGAPORE -->
+
+        <div class="destination-card">
+
+            <div class="destination-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=900&q=80"
+                    alt="Singapore"
+                >
+
+                <span class="badge">
+                    Family Favourite
+                </span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <h3>
+                    Singapore
+                </h3>
+
+                <p>
+                    Amazing attractions, family activities and city adventures.
+                </p>
+
+                <a
+                    href="{% url 'destination_list' %}?search=Singapore"
+                    class="explore-btn"
+                >
+                    Explore Singapore →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- MALAYSIA -->
+
+        <div class="destination-card">
+
+            <div class="destination-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=900&q=80"
+                    alt="Malaysia"
+                >
+
+                <span class="badge">
+                    Explore
+                </span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <h3>
+                    Malaysia
+                </h3>
+
+                <p>
+                    Nature, attractions and exciting experiences for families.
+                </p>
+
+                <a
+                    href="{% url 'destination_list' %}?search=Malaysia"
+                    class="explore-btn"
+                >
+                    Explore Malaysia →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- BALI -->
+
+        <div class="destination-card">
+
+            <div class="destination-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=80"
+                    alt="Bali"
+                >
+
+                <span class="badge">
+                    Adventure
+                </span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <h3>
+                    Bali
+                </h3>
+
+                <p>
+                    Beautiful beaches, nature and family-friendly experiences.
+                </p>
+
+                <a
+                    href="{% url 'destination_list' %}?search=Bali"
+                    class="explore-btn"
+                >
+                    Explore Bali →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- DUBAI -->
+
+        <div class="destination-card">
+
+            <div class="destination-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80"
+                    alt="Dubai"
+                >
+
+                <span class="badge">
+                    Popular
+                </span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <h3>
+                    Dubai
+                </h3>
+
+                <p>
+                    Modern attractions and exciting family experiences.
+                </p>
+
+                <a
+                    href="{% url 'destination_list' %}?search=Dubai"
+                    class="explore-btn"
+                >
+                    Explore Dubai →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- KERALA -->
+
+        <div class="destination-card">
+
+            <div class="destination-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80"
+                    alt="Kerala"
+                >
+
+                <span class="badge">
+                    Nature
+                </span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <h3>
+                    Kerala
+                </h3>
+
+                <p>
+                    Relaxing nature, beautiful backwaters and family fun.
+                </p>
+
+                <a
+                    href="{% url 'destination_list' %}?search=Kerala"
+                    class="explore-btn"
+                >
+                    Explore Kerala →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- MANALI -->
+
+        <div class="destination-card">
+
+            <div class="destination-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80"
+                    alt="Manali"
+                >
+
+                <span class="badge">
+                    Scenic
+                </span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <h3>
+                    Manali
+                </h3>
+
+                <p>
+                    Mountains, nature and memorable family adventures.
+                </p>
+
+                <a
+                    href="{% url 'destination_list' %}?search=Manali"
+                    class="explore-btn"
+                >
+                    Explore Manali →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     CTA
+================================ -->
+
+<section class="kids-cta">
+
+    <div>
+
+        <h2>
+            Make Their Next Trip Unforgettable
+        </h2>
+
+        <p>
+            Choose a destination and start planning your family adventure.
+        </p>
+
+        <a
+            href="{% url 'destination_list' %}"
+            class="kids-btn"
+        >
+            Start Exploring →
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

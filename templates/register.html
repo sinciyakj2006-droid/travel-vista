@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | Travel Vista</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px 15px;
+
+            background: linear-gradient(
+                135deg,
+                #f4efff,
+                #e9f5ee
+            );
+        }
+
+
+        /* =====================================================
+           CONTAINER
+        ===================================================== */
+
+        .register-container {
+            width: 100%;
+            max-width: 480px;
+        }
+
+
+        /* =====================================================
+           CARD
+        ===================================================== */
+
+        .register-card {
+            background: white;
+
+            padding: 38px;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 12px 40px
+                rgba(0, 0, 0, 0.12);
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .logo {
+            text-align: center;
+
+            font-size: 32px;
+
+            font-weight: 800;
+
+            color: #6c4ab6;
+
+            margin-bottom: 8px;
+        }
+
+
+        .subtitle {
+            text-align: center;
+
+            color: #777;
+
+            font-size: 15px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        .message-box {
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 12px 15px;
+
+            border-radius: 10px;
+
+            margin-bottom: 10px;
+
+            font-size: 14px;
+        }
+
+        .message.error {
+            background: #ffe8e8;
+
+            color: #b42318;
+
+            border: 1px solid #ffcccc;
+        }
+
+        .message.success {
+            background: #e9f8ef;
+
+            color: #18794e;
+
+            border: 1px solid #c7ecd7;
+        }
+
+        .message.info {
+            background: #edf4ff;
+
+            color: #245ea8;
+
+            border: 1px solid #cfe0ff;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+
+        label {
+            display: block;
+
+            font-weight: 600;
+
+            color: #333;
+
+            margin-bottom: 8px;
+        }
+
+
+        input {
+            width: 100%;
+
+            padding: 13px 15px;
+
+            border: 1.5px solid #ddd;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.25s;
+        }
+
+
+        input:focus {
+            border-color: #6c4ab6;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(108, 74, 182, 0.1);
+        }
+
+
+        /* =====================================================
+           PASSWORD WRAPPER
+        ===================================================== */
+
+        .password-wrapper {
+            position: relative;
+
+            width: 100%;
+        }
+
+
+        .password-wrapper input {
+            padding-right: 52px;
+        }
+
+
+        /* =====================================================
+           EYE BUTTON
+        ===================================================== */
+
+        .password-toggle {
+            position: absolute;
+
+            right: 10px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 38px;
+
+            height: 38px;
+
+            border: none;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 19px;
+
+            border-radius: 50%;
+
+            transition: 0.2s;
+        }
+
+
+        .password-toggle:hover {
+            background: #f2edff;
+        }
+
+
+        .password-toggle:focus {
+            outline: none;
+        }
+
+
+        /* =====================================================
+           HELP TEXT
+        ===================================================== */
+
+        .help-text {
+            margin-top: 6px;
+
+            font-size: 12px;
+
+            color: #888;
+        }
+
+
+        /* =====================================================
+           PASSWORD RULES
+        ===================================================== */
+
+        .password-rules {
+            background: #f8f6fc;
+
+            padding: 12px 15px;
+
+            border-radius: 10px;
+
+            margin-top: 8px;
+
+            font-size: 12px;
+
+            color: #666;
+        }
+
+
+        .password-rules div {
+            margin: 4px 0;
+        }
+
+
+        /* =====================================================
+           REGISTER BUTTON
+        ===================================================== */
+
+        .register-btn {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: linear-gradient(
+                135deg,
+                #6c4ab6,
+                #8e6bd1
+            );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 7px 18px
+                rgba(108, 74, 182, 0.3);
+        }
+
+
+        /* =====================================================
+           LOGIN LINK
+        ===================================================== */
+
+        .login-link {
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #777;
+
+            font-size: 14px;
+        }
+
+
+        .login-link a {
+            color: #6c4ab6;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           HOME LINK
+        ===================================================== */
+
+        .back-home {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #777;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+
+        .back-home:hover {
+            color: #6c4ab6;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 500px) {
+
+            .register-card {
+                padding: 28px 22px;
+            }
+
+            .logo {
+                font-size: 28px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="register-container">
+
+
+    <div class="register-card">
+
+
+        <!-- =================================================
+             LOGO
+        ================================================== -->
+
+        <div class="logo">
+            ✈️ Travel Vista
+        </div>
+
+
+        <div class="subtitle">
+            Create your account and start exploring 🌍
+        </div>
+
+
+
+        <!-- =================================================
+             DJANGO MESSAGES
+        ================================================== -->
+
+        {% if messages %}
+
+            <div class="message-box">
+
+                {% for message in messages %}
+
+                    <div class="message {{ message.tags }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+
+
+        <!-- =================================================
+             REGISTER FORM
+        ================================================== -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+
+            <!-- USERNAME -->
+
+            <div class="form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter username"
+                    value="{{ request.POST.username|default:'' }}"
+                    autocomplete="username"
+                    required
+                >
+
+                <div class="help-text">
+                    Minimum 3 characters. Letters, numbers and underscore only.
+                </div>
+
+            </div>
+
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    value="{{ request.POST.email|default:'' }}"
+                    autocomplete="email"
+                    required
+                >
+
+                <div class="help-text">
+                    Enter a valid email address.
+                </div>
+
+            </div>
+
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                    >
+
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword(
+                            'password',
+                            'eyePassword'
+                        )"
+                        aria-label="Show or hide password"
+                    >
+
+                        <span id="eyePassword">
+                            👁️
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <div class="password-rules">
+
+                    <div>
+                        ✓ Minimum 8 characters
+                    </div>
+
+                    <div>
+                        ✓ Use a strong password
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="confirm_password">
+                    Confirm Password
+                </label>
+
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="confirm_password"
+                        name="confirm_password"
+                        placeholder="Re-enter your password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                    >
+
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword(
+                            'confirm_password',
+                            'eyeConfirm'
+                        )"
+                        aria-label="Show or hide confirm password"
+                    >
+
+                        <span id="eyeConfirm">
+                            👁️
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- REGISTER BUTTON -->
+
+            <button
+                type="submit"
+                class="register-btn"
+            >
+                Create Account
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =================================================
+             LOGIN
+        ================================================== -->
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             BACK HOME
+        ================================================== -->
+
+        <a
+            href="{% url 'home' %}"
+            class="back-home"
+        >
+            ← Back to Home
+        </a>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+
+function togglePassword(inputId, eyeId) {
+
+    const input =
+        document.getElementById(inputId);
+
+    const eye =
+        document.getElementById(eyeId);
+
+
+    if (input.type === "password") {
+
+        input.type = "text";
+
+        eye.textContent = "🙈";
+
+    }
+
+    else {
+
+        input.type = "password";
+
+        eye.textContent = "👁️";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   PASSWORD MATCH VALIDATION
+===================================================== */
+
+const password =
+    document.getElementById("password");
+
+const confirmPassword =
+    document.getElementById("confirm_password");
+
+
+function checkPasswordMatch() {
+
+    if (
+        confirmPassword.value !== "" &&
+        password.value !== confirmPassword.value
+    ) {
+
+        confirmPassword.setCustomValidity(
+            "Passwords do not match."
+        );
+
+    }
+
+    else {
+
+        confirmPassword.setCustomValidity("");
+
+    }
+
+}
+
+
+password.addEventListener(
+    "input",
+    checkPasswordMatch
+);
+
+
+confirmPassword.addEventListener(
+    "input",
+    checkPasswordMatch
+);
+
+
+</script>
+
+
+</body>
+</html>

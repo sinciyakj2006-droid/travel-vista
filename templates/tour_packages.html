@@ -1,0 +1,460 @@
+{% extends "base.html" %}
+
+{% block title %}Tour Packages | Travel Vista{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .packages-section {
+        padding: 60px 0;
+        background: #f8faf7;
+    }
+
+    .packages-heading {
+        text-align: center;
+        margin-bottom: 45px;
+    }
+
+    .packages-heading h1 {
+        font-size: 38px;
+        font-weight: 700;
+        color: #6C4AB6;
+        margin-bottom: 10px;
+    }
+
+    .packages-heading p {
+        color: #666;
+        font-size: 16px;
+    }
+
+    .packages-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        align-items: stretch;
+    }
+
+    .package-card {
+        background: #ffffff;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+
+        display: flex;
+        flex-direction: column;
+
+        height: 100%;
+
+        transition: 0.3s ease;
+    }
+
+    .package-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.15);
+    }
+
+
+    /* ================= PACKAGE IMAGE ================= */
+
+    .package-image {
+        width: 100%;
+        height: 240px;
+
+        object-fit: cover;
+        object-position: center;
+
+        display: block;
+
+        background: #eef3f0;
+
+        image-rendering: auto;
+    }
+
+
+    .no-image {
+        width: 100%;
+        height: 240px;
+
+        background: #e9eee7;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: #777;
+    }
+
+
+    /* ================= CONTENT ================= */
+
+    .package-content {
+        padding: 24px;
+
+        display: flex;
+        flex-direction: column;
+
+        flex: 1;
+    }
+
+    .package-content h2 {
+        font-size: 23px;
+        font-weight: 700;
+
+        color: #333;
+
+        margin-bottom: 10px;
+    }
+
+    .location {
+        color: #6C4AB6;
+
+        font-weight: 600;
+
+        margin-bottom: 8px;
+    }
+
+    .duration {
+        color: #555;
+
+        margin-bottom: 12px;
+    }
+
+    .description {
+        color: #666;
+
+        line-height: 1.6;
+
+        margin-bottom: 20px;
+    }
+
+    .package-bottom {
+        margin-top: auto;
+    }
+
+
+    /* ================= PRICE ================= */
+
+    .price {
+        font-size: 25px;
+
+        font-weight: 700;
+
+        color: #6C4AB6;
+
+        margin-bottom: 18px;
+    }
+
+
+    /* ================= BUTTON ================= */
+
+    .book-btn {
+        display: block;
+
+        width: 100%;
+
+        text-align: center;
+
+        background: #6C4AB6;
+
+        color: #ffffff;
+
+        padding: 12px 20px;
+
+        border-radius: 12px;
+
+        text-decoration: none;
+
+        font-weight: 600;
+
+        transition: 0.3s ease;
+    }
+
+    .book-btn:hover {
+        background: #55359A;
+
+        color: #ffffff;
+
+        transform: translateY(-2px);
+    }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 991px) {
+
+        .packages-row {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+    }
+
+
+    @media (max-width: 575px) {
+
+        .packages-section {
+            padding: 40px 15px;
+        }
+
+        .packages-heading h1 {
+            font-size: 30px;
+        }
+
+        .packages-row {
+            grid-template-columns: 1fr;
+
+            gap: 25px;
+        }
+
+        .package-image {
+            height: 230px;
+        }
+
+    }
+
+</style>
+
+
+<section class="packages-section">
+
+    <div class="container">
+
+        <div class="packages-heading">
+
+            <h1>
+                Tour Packages
+            </h1>
+
+            <p>
+                Choose your perfect package and start your journey
+            </p>
+
+        </div>
+
+
+        <div class="packages-row">
+
+
+            {% for package in packages %}
+
+            <div class="package-card">
+
+
+                <!-- ================= IMAGE ================= -->
+
+                {% with destination_name=package.destination.name|lower %}
+
+
+                    {% if "switzerland" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=90"
+                            alt="Switzerland"
+                            class="package-image"
+                        >
+
+
+                    {% elif "maldives" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=90"
+                            alt="Maldives"
+                            class="package-image"
+                        >
+
+
+                    {% elif "bali" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1400&q=90"
+                            alt="Bali"
+                            class="package-image"
+                        >
+
+
+                    {% elif "singapore" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1400&q=90"
+                            alt="Singapore"
+                            class="package-image"
+                        >
+
+
+                    {% elif "thailand" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=1400&q=90"
+                            alt="Thailand"
+                            class="package-image"
+                        >
+
+
+                    {% elif "malaysia" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1400&q=90"
+                            alt="Malaysia"
+                            class="package-image"
+                        >
+
+
+                    {% elif "kerala" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1400&q=90"
+                            alt="Kerala"
+                            class="package-image"
+                        >
+
+
+                    {% elif "kashmir" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1666438239881-5ea3efaa0996?auto=format&fit=crop&w=1400&q=90"
+                            alt="Kashmir"
+                            class="package-image"
+                        >
+
+
+                    {% elif "manali" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=90"
+                            alt="Manali"
+                            class="package-image"
+                        >
+
+
+                    {% elif "paris" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1400&q=90"
+                            alt="Paris"
+                            class="package-image"
+                        >
+
+
+                    {% elif "japan" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1400&q=90"
+                            alt="Japan"
+                            class="package-image"
+                        >
+
+
+                    {% elif "dubai" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1400&q=90"
+                            alt="Dubai"
+                            class="package-image"
+                        >
+
+
+                    {% elif "goa" in destination_name %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1400&q=90"
+                            alt="Goa"
+                            class="package-image"
+                        >
+
+
+                    {% else %}
+
+                        {% if package.destination.image %}
+
+                            <img
+                                src="{{ package.destination.image.url }}"
+                                alt="{{ package.destination.name }}"
+                                class="package-image"
+                            >
+
+                        {% else %}
+
+                            <div class="no-image">
+                                No Image Available
+                            </div>
+
+                        {% endif %}
+
+                    {% endif %}
+
+                {% endwith %}
+
+
+                <!-- ================= PACKAGE CONTENT ================= -->
+
+                <div class="package-content">
+
+                    <h2>
+                        {{ package.name }}
+                    </h2>
+
+
+                    <p class="location">
+
+                        {{ package.destination.name }}
+
+                    </p>
+
+
+                    <p class="duration">
+
+                        {{ package.duration }}
+
+                    </p>
+
+
+                    <p class="description">
+
+                        {{ package.description|truncatewords:20 }}
+
+                    </p>
+
+
+                    <div class="package-bottom">
+
+                        <div class="price">
+
+                            ₹{{ package.price }}
+
+                        </div>
+
+
+                        <a
+                            href="{% url 'tour_package_detail' package.pk %}"
+                            class="book-btn"
+                        >
+                            Book Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            {% empty %}
+
+            <div class="text-center">
+
+                <h3>
+                    No tour packages available.
+                </h3>
+
+            </div>
+
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,1431 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Travel Vista | Explore the World{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* =====================================================
+   HERO SLIDER
+   ===================================================== */
+
+.hero-slider {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.hero-slider .carousel-item {
+    position: relative;
+}
+
+.hero-slider .carousel-item img {
+    width: 100%;
+    height: 650px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Dark overlay */
+
+.hero-slider .carousel-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.30);
+    z-index: 1;
+}
+
+/* Hero content */
+
+.hero-content {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 850px;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 58px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 21px;
+    margin-bottom: 28px;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 30px;
+    background: #6c4ab6;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.hero-btn:hover {
+    color: white;
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+
+/* =====================================================
+   SLIDER ARROWS
+   ===================================================== */
+
+.hero-slider .carousel-control-prev,
+.hero-slider .carousel-control-next {
+    z-index: 3;
+    width: 8%;
+}
+
+.hero-slider .carousel-control-prev-icon,
+.hero-slider .carousel-control-next-icon {
+    width: 45px;
+    height: 45px;
+    background-size: 70%;
+    background-color: rgba(0, 0, 0, 0.35);
+    border-radius: 50%;
+}
+
+
+/* =====================================================
+   SLIDER DOTS
+   ===================================================== */
+
+.hero-slider .carousel-indicators {
+    z-index: 3;
+    margin-bottom: 25px;
+}
+
+.hero-slider .carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+
+/* =====================================================
+   GENERAL SECTION
+   ===================================================== */
+
+.home-section {
+    padding: 60px 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    color: #6c4ab6;
+    font-weight: 700;
+}
+
+.section-title p {
+    color: #777;
+}
+
+
+/* =====================================================
+   TRAVEL VIDEO
+   ===================================================== */
+
+.travel-video-section {
+    padding: 70px 20px;
+    background: #f7fbfb;
+}
+
+.travel-video-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
+.travel-mood-video {
+    width: 100%;
+    height: 450px;
+    display: block;
+    object-fit: cover;
+}
+
+
+/* =====================================================
+   DESTINATION CARDS
+   ===================================================== */
+
+.destination-card {
+    height: 100%;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
+}
+
+.destination-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.destination-card-image {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.destination-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: 0.4s ease;
+}
+
+.destination-card:hover .destination-card-image img {
+    transform: scale(1.05);
+}
+
+.destination-card-body {
+    padding: 20px;
+}
+
+.destination-card-body h4 {
+    color: #6c4ab6;
+    font-weight: 700;
+}
+
+.destination-card-body p {
+    color: #666;
+}
+
+.view-btn {
+    display: inline-block;
+    padding: 9px 18px;
+    background: #6c4ab6;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.view-btn:hover {
+    color: white;
+    opacity: 0.9;
+}
+
+
+/* =====================================================
+   FEATURES
+   ===================================================== */
+
+.feature-card {
+    height: 100%;
+    padding: 30px 20px;
+    background: white;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    transition: 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.feature-card h4 {
+    color: #6c4ab6;
+    font-weight: 700;
+}
+
+.feature-card p {
+    color: #666;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    .hero-slider .carousel-item img {
+        height: 500px;
+    }
+
+    .hero-content h1 {
+        font-size: 38px;
+    }
+
+    .hero-content p {
+        font-size: 17px;
+    }
+
+    .destination-card-image {
+        height: 240px;
+    }
+
+    .travel-mood-video {
+        height: 300px;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+   ===================================================== */
+
+@media (max-width: 480px) {
+
+    .hero-slider .carousel-item img {
+        height: 520px;
+    }
+
+    .hero-content {
+        width: 85%;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+    }
+
+    .hero-btn {
+        padding: 12px 22px;
+        font-size: 14px;
+    }
+
+    .travel-mood-video {
+        height: 240px;
+    }
+}
+
+/* =====================================================
+   ANIMATED TRAVEL BANNER
+   ===================================================== */
+
+.travel-animation-banner {
+    width: 100%;
+    height: 280px;
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.25)
+        ),
+        url("{% static 'images/banner1.png' %}");
+
+    background-size: cover;
+    background-position: center;
+
+    animation: travelZoom 12s ease-in-out infinite alternate;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+/* Dark transparent overlay */
+.travel-animation-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(108, 74, 182, 0.18),
+        rgba(0, 0, 0, 0.08),
+        rgba(13, 139, 154, 0.18)
+    );
+
+    z-index: 1;
+}
+
+
+/* ================================
+   BANNER TEXT
+   ================================ */
+
+.travel-animation-banner .hero-text {
+    position: relative;
+    z-index: 2;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    max-width: 900px;
+
+    padding: 20px;
+}
+
+
+/* Main heading */
+
+.travel-animation-banner .hero-title {
+    margin: 0;
+
+    font-size: clamp(38px, 5vw, 64px);
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    line-height: 1.15;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.65),
+        0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Highlight one part if needed */
+
+.travel-animation-banner .hero-title span {
+    color: #ffffff !important;
+}
+    text-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+
+/* Subtitle */
+
+.travel-animation-banner .hero-subtitle {
+    margin-top: 15px;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    color: #ffffff;
+
+    letter-spacing: 0.5px;
+
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+
+/* Small decorative line */
+
+.travel-animation-banner .hero-divider {
+    width: 80px;
+    height: 4px;
+
+    margin: 15px auto;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #6C4AB6,
+        #0D8B9A
+    );
+}
+
+
+/* ================================
+   ZOOM ANIMATION
+   ================================ */
+
+@keyframes travelZoom {
+
+    0% {
+        background-size: 100%;
+        background-position: center;
+    }
+
+    100% {
+        background-size: 110%;
+        background-position: center;
+    }
+}
+
+
+/* ================================
+   MOBILE
+   ================================ */
+
+@media (max-width: 768px) {
+
+    .travel-animation-banner {
+        height: 240px;
+    }
+
+    .travel-animation-banner .hero-title {
+        font-size: 36px;
+    }
+
+    .travel-animation-banner .hero-subtitle {
+        font-size: 16px;
+    }
+}
+
+/* OUR BRANCHES */
+
+.branches-section {
+    padding: 70px 0;
+    background: #f7faf9;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-heading span {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #5b8068;
+}
+
+.section-heading h2 {
+    font-size: 38px;
+    margin: 8px 0 12px;
+    color: #183b2a;
+    font-weight: 700;
+}
+
+.section-heading p {
+    color: #777;
+    font-size: 16px;
+}
+
+.branches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.branch-card {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.branch-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.branch-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.branch-card h3 {
+    font-size: 23px;
+    color: #183b2a;
+    margin-bottom: 8px;
+}
+
+.branch-card p {
+    color: #777;
+    margin: 5px 0;
+}
+
+.branch-address {
+    font-size: 14px;
+    margin-bottom: 18px !important;
+}
+
+.branch-card a {
+    color: #52785f;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.branch-card a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .branches-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .branches-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+}
+
+</style>
+
+<!-- =====================================================
+     HERO IMAGE SLIDER
+===================================================== -->
+
+<section class="hero-slider">
+
+<div id="travelHeroSlider"
+     class="carousel slide carousel-fade"
+     data-bs-ride="carousel"
+     data-bs-interval="4000">
+
+    <!-- DOTS -->
+
+    <div class="carousel-indicators">
+
+        <button type="button"
+                data-bs-target="#travelHeroSlider"
+                data-bs-slide-to="0"
+                class="active">
+        </button>
+
+        <button type="button"
+                data-bs-target="#travelHeroSlider"
+                data-bs-slide-to="1">
+        </button>
+
+        <button type="button"
+                data-bs-target="#travelHeroSlider"
+                data-bs-slide-to="2">
+        </button>
+
+        <button type="button"
+                data-bs-target="#travelHeroSlider"
+                data-bs-slide-to="3">
+        </button>
+
+        <button type="button"
+                data-bs-target="#travelHeroSlider"
+                data-bs-slide-to="4">
+        </button>
+
+    </div>
+
+
+    <!-- SLIDES -->
+
+    <div class="carousel-inner">
+
+
+        <!-- HERO 1 -->
+
+        <div class="carousel-item active">
+
+            <img src="{% static 'images/hero1.jpg' %}"
+                 alt="Travel Vista">
+
+            <div class="hero-content">
+
+                <h1>
+                    Explore the World 
+                </h1>
+
+                <p>
+                    Discover beautiful destinations,
+                    unforgettable experiences and amazing journeys.
+                </p>
+
+                <a href="{% url 'destination_list' %}"
+                   class="hero-btn">
+
+                    Explore Destinations
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO 2 -->
+
+        <div class="carousel-item">
+
+            <img src="{% static 'images/hero2.jpg' %}"
+                 alt="Beautiful Destination">
+
+            <div class="hero-content">
+
+                <h1>
+                    Discover Paradise 
+                </h1>
+
+                <p>
+                    Escape to breathtaking places
+                    and create unforgettable memories.
+                </p>
+
+                <a href="{% url 'destination_list' %}"
+                   class="hero-btn">
+
+                    Discover More
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO 3 -->
+
+        <div class="carousel-item">
+
+            <img src="{% static 'images/hero3.jpg' %}"
+                 alt="Adventure Destination">
+
+            <div class="hero-content">
+
+                <h1>
+                    Adventure Awaits 
+                </h1>
+
+                <p>
+                    Experience nature, adventure
+                    and exciting journeys.
+                </p>
+
+                <a href="{% url 'mood_planner' %}"
+                   class="hero-btn">
+
+                    Plan My Trip
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO 4 -->
+
+        <div class="carousel-item">
+
+            <img src="{% static 'images/hero4.jpg' %}"
+                 alt="Travel Destination">
+
+            <div class="hero-content">
+
+                <h1>
+                    Travel. Explore. Enjoy. 
+                </h1>
+
+                <p>
+                    Find your perfect destination
+                    with Travel Vista.
+                </p>
+
+                <a href="{% url 'tour_packages' %}"
+                   class="hero-btn">
+
+                    Tour Packages
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO 5 -->
+
+        <div class="carousel-item">
+
+            <img src="{% static 'images/hero5.jpg' %}"
+                 alt="Dream Destination">
+
+            <div class="hero-content">
+
+                <h1>
+                    Make Memories 
+                </h1>
+
+                <p>
+                    Your dream journey starts here.
+                </p>
+
+                <a href="{% url 'mood_planner' %}"
+                   class="hero-btn">
+
+                    Start Planning
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PREVIOUS -->
+
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#travelHeroSlider"
+            data-bs-slide="prev">
+
+        <span class="carousel-control-prev-icon"></span>
+
+        <span class="visually-hidden">
+            Previous
+        </span>
+
+    </button>
+
+
+    <!-- NEXT -->
+
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#travelHeroSlider"
+            data-bs-slide="next">
+
+        <span class="carousel-control-next-icon"></span>
+
+        <span class="visually-hidden">
+            Next
+        </span>
+
+    </button>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     TRAVEL VIDEO
+===================================================== -->
+
+<section class="travel-video-section">
+
+<div class="container">
+
+    <div class="section-title">
+
+        <h2>
+            Your Journey Starts Here 
+        </h2>
+
+        <p>
+            Explore the beauty of travel with Travel Vista.
+        </p>
+
+    </div>
+
+
+    <div class="travel-video-container">
+
+
+        <video class="travel-mood-video"
+       muted
+       loop
+       playsinline
+       preload="auto">
+
+    <source src="{% static 'videos/travel.mp4' %}" type="video/mp4">
+
+    Your browser does not support the video tag.
+</video>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const video = document.querySelector(".travel-mood-video");
+
+    if (!video) return;
+
+    video.muted = true;
+
+    const observer = new IntersectionObserver(function (entries) {
+
+        entries.forEach(function (entry) {
+
+            if (entry.isIntersecting) {
+
+                video.play().catch(function (error) {
+                    console.log("Video play blocked:", error);
+                });
+
+            } else {
+
+                video.pause();
+
+            }
+
+        });
+
+    }, {
+        threshold: 0.25
+    });
+
+    observer.observe(video);
+
+});
+</script>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     WELCOME
+===================================================== -->
+
+<section class="home-section">
+
+
+<div class="container">
+
+    <div class="section-title">
+
+        <h2>
+            Welcome to Travel Vista 
+        </h2>
+
+        <p>
+            Your journey begins here. Find the perfect destination
+            and plan your dream trip with us.
+        </p>
+
+    </div>
+
+
+    {% if destinations %}
+
+    <div class="row g-4">
+
+        {% for destination in destinations %}
+
+        <div class="col-lg-4 col-md-6">
+
+            <div class="destination-card">
+
+                <div class="destination-card-image">
+
+                    {% if destination.image %}
+
+                        <img src="{{ destination.image.url }}"
+                             alt="{{ destination.name }}">
+
+                    {% else %}
+
+                        <div class="d-flex align-items-center justify-content-center h-100 bg-light">
+
+                            <span>
+                                No Image Available
+                            </span>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="destination-card-body">
+
+                    <h4>
+                        {{ destination.name }}
+                    </h4>
+
+                    <p>
+                         {{ destination.location }}
+                    </p>
+
+                
+
+                    <a href="{% url 'destination_detail' destination.pk %}"
+                       class="view-btn">
+
+                        View Destination
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="text-center">
+
+        <p>
+            No destinations available yet.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+
+</section>
+<!-- =====================================================
+     ANIMATED TRAVEL BANNER
+===================================================== -->
+
+<section class="travel-animation-banner">
+
+    <div class="travel-animation-banner">
+
+    <div class="hero-text">
+
+        <h1 class="hero-title">
+            Discover. <span>Explore.</span> Experience.
+        </h1>
+
+        <div class="hero-divider"></div>
+
+        <p class="hero-subtitle">
+            Every journey creates a beautiful memory.
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+<!-- =====================================================
+     TYPES OF TRAVELS
+===================================================== -->
+
+<section class="home-section"
+         style="
+            background: #faf9fd;
+            border-radius: 30px;
+            margin: 20px 0;
+            padding: 70px 20px;
+         ">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>
+                Types of Travels
+            </h2>
+
+            <p>
+                Choose the type of journey that suits you best.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- TRIP WITH STRANGERS -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <a href="{% url 'strangers_trip' %}"
+                   style="text-decoration: none; color: inherit;">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon"></div>
+
+                        <h4>
+                            Trip with Strangers
+                        </h4>
+
+                        <p>
+                            Meet new people and enjoy exciting
+                            group travel experiences.
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <!-- TRIP WITH KIDS -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <a href="{% url 'kids_trip' %}"
+                   style="text-decoration: none; color: inherit;">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon"></div>
+
+                        <h4>
+                            Trip with Kids
+                        </h4>
+
+                        <p>
+                            Fun and enjoyable travel experiences
+                            designed for kids.
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <!-- SOLO TRIP -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <a href="{% url 'solo_trip' %}"
+                   style="text-decoration: none; color: inherit;">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon"></div>
+
+                        <h4>
+                            Solo Trip
+                        </h4>
+
+                        <p>
+                            Explore new destinations and enjoy
+                            your journey at your own pace.
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     WHY TRAVEL VISTA
+===================================================== -->
+
+<section class="home-section">
+
+
+<div class="container">
+
+    <div class="section-title">
+
+        <h2>
+            Why Choose Travel Vista? 
+        </h2>
+
+        <p>
+            Everything you need for a memorable journey.
+        </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+
+        <!-- FEATURE 1 -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    
+                </div>
+
+                <h4>
+                    Beautiful Destinations
+                </h4>
+
+                <p>
+                    Explore amazing places around the world.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FEATURE 2 -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    
+                </div>
+
+                <h4>
+                    Easy Planning
+                </h4>
+
+                <p>
+                    Plan your perfect trip easily and quickly.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FEATURE 3 -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    
+                </div>
+
+                <h4>
+                    Smart Travel
+                </h4>
+
+                <p>
+                    Get useful travel options and trip features.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FEATURE 4 -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    
+                </div>
+
+                <h4>
+                    Memorable Experience
+                </h4>
+
+                <p>
+                    Make every journey special with Travel Vista.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     PLAN TRIP
+===================================================== -->
+
+<section class="home-section">
+
+
+<div class="container text-center">
+
+    <div class="section-title">
+
+        <h2>
+            Ready for Your Next Adventure? 
+        </h2>
+
+        <p>
+            Choose your destination and start planning today.
+        </p>
+
+    </div>
+
+
+    <a href="{% url 'mood_planner' %}"
+       class="hero-btn">
+
+        Plan My Trip 
+
+    </a>
+
+</div>
+<!-- ================================
+     REVIEWS & TESTIMONIALS
+================================ -->
+
+<section class="testimonials-section">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Reviews & Testimonials</h2>
+            <p>What our travellers say about their journey</p>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Review 1 -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="testimonial-card">
+
+                    <img src="{% static 'images/review1.jpg' %}"
+                         alt="Traveller"
+                         class="testimonial-image">
+
+                    <div class="testimonial-stars">
+                        ★★★★★
+                    </div>
+
+                    <p class="testimonial-text">
+                        “Travel Vista made our trip smooth and enjoyable.
+                        Everything was well organised and the experience
+                        was truly memorable.”
+                    </p>
+
+                    <h4 class="testimonial-name">
+                        Anjali
+                    </h4>
+
+                    <p class="testimonial-place">
+                        Kerala
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Review 2 -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="testimonial-card">
+
+                    <img src="{% static 'images/review2.jpg' %}"
+                         alt="Traveller"
+                         class="testimonial-image">
+
+                    <div class="testimonial-stars">
+                        ★★★★★
+                    </div>
+
+                    <p class="testimonial-text">
+                        “The destination planning was excellent.
+                        The booking process was simple and the whole
+                        journey was a wonderful experience.”
+                    </p>
+
+                    <h4 class="testimonial-name">
+                        Rahul
+                    </h4>
+
+                    <p class="testimonial-place">
+                        Bangalore
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Review 3 -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="testimonial-card">
+
+                    <img src="{% static 'images/review3.jpg' %}"
+                         alt="Traveller"
+                         class="testimonial-image">
+
+                    <div class="testimonial-stars">
+                        ★★★★★
+                    </div>
+
+                    <p class="testimonial-text">
+                        “Beautiful destinations, helpful support and
+                        a simple booking experience. Travel Vista made
+                        our holiday special.”
+                    </p>
+
+                    <h4 class="testimonial-name">
+                        Meera
+                    </h4>
+
+                    <p class="testimonial-place">
+                        Chennai
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+</section>
+
+{% endblock %}

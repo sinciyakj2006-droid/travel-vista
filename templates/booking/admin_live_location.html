@@ -1,0 +1,821 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+
+<style>
+
+    /* =========================================
+       MAIN PAGE
+    ========================================= */
+
+    .location-page {
+        max-width: 1250px;
+        margin: 25px auto;
+        padding: 0 15px;
+        filter: none !important;
+        backdrop-filter: none !important;
+        opacity: 1 !important;
+    }
+
+
+    .page-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        color: #222 !important;
+        filter: none !important;
+    }
+
+
+    /* =========================================
+       REMOVE ALL BLUR
+    ========================================= */
+
+    .location-page,
+    .location-page *,
+    .info-card,
+    .info-card *,
+    .gps-card,
+    .gps-card *,
+    .map-card,
+    .map-card * {
+        filter: none !important;
+        backdrop-filter: none !important;
+        opacity: 1 !important;
+        text-shadow: none !important;
+    }
+
+
+    /* =========================================
+       CUSTOMER + TRAVEL CARDS
+    ========================================= */
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+
+    .info-card {
+        background: #ffffff !important;
+        color: #222 !important;
+        border-radius: 14px;
+        padding: 25px;
+        border: 1px solid #dddddd;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+
+
+    .info-card h3 {
+        margin: 0 0 18px 0;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #eeeeee;
+        font-size: 20px;
+        font-weight: 700;
+        color: #222 !important;
+    }
+
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 25px;
+        padding: 11px 0;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+
+    .info-row:last-child {
+        border-bottom: none;
+    }
+
+
+    .label {
+        color: #555 !important;
+        font-weight: 600;
+        min-width: 140px;
+    }
+
+
+    .value {
+        color: #111 !important;
+        font-weight: 600;
+        text-align: right;
+        word-break: break-word;
+    }
+
+
+    /* =========================================
+       GPS CARD
+    ========================================= */
+
+    .gps-card {
+        background: #ffffff !important;
+        color: #222 !important;
+        border-radius: 14px;
+        padding: 25px;
+        border: 1px solid #dddddd;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        margin-bottom: 20px;
+    }
+
+
+    .gps-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+
+    .gps-header h3 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: #222 !important;
+    }
+
+
+    .active-badge {
+        display: inline-block;
+        background: #d1e7dd !important;
+        color: #146c43 !important;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+
+    .inactive-badge {
+        display: inline-block;
+        background: #eeeeee !important;
+        color: #555 !important;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+
+    .gps-details {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+
+    .gps-item {
+        background: #f5f5f5 !important;
+        border: 1px solid #e5e5e5;
+        padding: 17px;
+        border-radius: 10px;
+    }
+
+
+    .gps-item-title {
+        color: #666 !important;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 7px;
+    }
+
+
+    .gps-item-value {
+        color: #111 !important;
+        font-size: 17px;
+        font-weight: 700;
+        word-break: break-word;
+    }
+
+
+    /* =========================================
+       MAP CARD
+    ========================================= */
+
+    .map-card {
+        background: #ffffff !important;
+        color: #222 !important;
+        border-radius: 14px;
+        padding: 20px;
+        border: 1px solid #dddddd;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+
+
+    .map-title {
+        font-size: 21px;
+        font-weight: 700;
+        color: #222 !important;
+        margin-bottom: 15px;
+    }
+
+
+    #map {
+        width: 100%;
+        height: 550px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+
+    .refresh-info {
+        margin-top: 12px;
+        text-align: right;
+        color: #666 !important;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+
+    .no-location {
+        margin-top: 20px;
+        padding: 30px;
+        text-align: center;
+        background: #f5f5f5 !important;
+        color: #555 !important;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 800px) {
+
+        .details-grid {
+            grid-template-columns: 1fr;
+        }
+
+
+        .gps-details {
+            grid-template-columns: 1fr;
+        }
+
+
+        .info-row {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+
+        .value {
+            text-align: left;
+        }
+
+
+        #map {
+            height: 400px;
+        }
+
+    }
+
+</style>
+
+
+<div class="location-page">
+
+    <!-- =========================================
+         PAGE TITLE
+    ========================================= -->
+
+    <div class="page-title">
+         Live Customer Location
+    </div>
+
+
+    <!-- =========================================
+         CUSTOMER + TRAVEL INFORMATION
+    ========================================= -->
+
+    <div class="details-grid">
+
+
+        <!-- CUSTOMER INFORMATION -->
+
+        <div class="info-card">
+
+            <h3>👤 Customer Information</h3>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Full Name
+                </span>
+
+                <span class="value">
+                    {{ booking.full_name }}
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Username
+                </span>
+
+                <span class="value">
+                    {{ booking.username }}
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Email
+                </span>
+
+                <span class="value">
+                    {{ booking.email }}
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Phone
+                </span>
+
+                <span class="value">
+                    {{ booking.phone }}
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Address
+                </span>
+
+                <span class="value">
+                    {{ booking.address }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- TRAVEL INFORMATION -->
+
+        <div class="info-card">
+
+            <h3>✈️ Travel Information</h3>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Destination
+                </span>
+
+                <span class="value">
+
+                    {% if booking.package %}
+                        {{ booking.package.destination.name }}
+                    {% else %}
+                        Destination Booking
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Package
+                </span>
+
+                <span class="value">
+
+                    {% if booking.package %}
+                        {{ booking.package.name }}
+                    {% else %}
+                        Custom Destination
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Travel Date
+                </span>
+
+                <span class="value">
+                    {{ booking.travel_date }}
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Number of People
+                </span>
+
+                <span class="value">
+                    {{ booking.number_of_people }}
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Payment Method
+                </span>
+
+                <span class="value">
+                    {{ booking.get_payment_method_display }}
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Booking Status
+                </span>
+
+                <span class="value">
+                    {{ booking.payment_status }}
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         GPS TRACKING
+    ========================================= -->
+
+    <div class="gps-card">
+
+        <div class="gps-header">
+
+            <h3>
+                 GPS Tracking Details
+            </h3>
+
+
+            <span id="tracking-status">
+
+                {% if booking.tracking_active %}
+
+                    <span class="active-badge">
+                        🟢 Location Sharing Active
+                    </span>
+
+                {% else %}
+
+                    <span class="inactive-badge">
+                        ⚪ Not Active
+                    </span>
+
+                {% endif %}
+
+            </span>
+
+        </div>
+
+
+        {% if booking.latitude and booking.longitude %}
+
+            <div class="gps-details">
+
+
+                <div class="gps-item">
+
+                    <div class="gps-item-title">
+                        Latitude
+                    </div>
+
+                    <div
+                        class="gps-item-value"
+                        id="latitude"
+                    >
+                        {{ booking.latitude }}
+                    </div>
+
+                </div>
+
+
+                <div class="gps-item">
+
+                    <div class="gps-item-title">
+                        Longitude
+                    </div>
+
+                    <div
+                        class="gps-item-value"
+                        id="longitude"
+                    >
+                        {{ booking.longitude }}
+                    </div>
+
+                </div>
+
+
+                <div class="gps-item">
+
+                    <div class="gps-item-title">
+                        Last Updated
+                    </div>
+
+                    <div
+                        class="gps-item-value"
+                        id="updated-at"
+                    >
+                        {{ booking.location_updated_at }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <div class="no-location">
+                 Customer has not shared a GPS location yet.
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- =========================================
+         MAP
+    ========================================= -->
+
+    {% if booking.latitude and booking.longitude %}
+
+        <div class="map-card">
+
+            <div class="map-title">
+                Customer's Current Location
+            </div>
+
+
+            <div id="map"></div>
+
+
+            <div class="refresh-info">
+                 Location automatically checked every 5 seconds
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+
+<!-- =========================================
+     LEAFLET
+========================================= -->
+
+{% if booking.latitude and booking.longitude %}
+
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<script>
+
+    // =========================================
+    // INITIAL LOCATION
+    // =========================================
+
+    let latitude = {{ booking.latitude }};
+    let longitude = {{ booking.longitude }};
+
+
+    // =========================================
+    // CREATE MAP
+    // =========================================
+
+    const map = L.map("map").setView(
+        [latitude, longitude],
+        15
+    );
+
+
+    // =========================================
+    // OPEN STREET MAP
+    // =========================================
+
+    L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+            maxZoom: 19,
+
+            attribution:
+                "&copy; OpenStreetMap contributors"
+        }
+    ).addTo(map);
+
+
+    // =========================================
+    // CUSTOMER MARKER
+    // =========================================
+
+    const marker = L.marker(
+        [latitude, longitude]
+    ).addTo(map);
+
+
+    marker.bindPopup(
+        "<strong>" +
+        "{{ booking.full_name|escapejs }}" +
+        "</strong><br>" +
+        " Current Location"
+    ).openPopup();
+
+
+    // =========================================
+    // UPDATE MAP
+    // =========================================
+
+    function updateMapLocation(
+        newLatitude,
+        newLongitude
+    ) {
+
+        const newPosition = [
+            newLatitude,
+            newLongitude
+        ];
+
+
+        marker.setLatLng(
+            newPosition
+        );
+
+
+        map.panTo(
+            newPosition
+        );
+
+
+        document.getElementById(
+            "latitude"
+        ).textContent =
+            newLatitude;
+
+
+        document.getElementById(
+            "longitude"
+        ).textContent =
+            newLongitude;
+
+    }
+
+
+    // =========================================
+    // CHECK LATEST LOCATION
+    // =========================================
+
+    function checkLatestLocation() {
+
+        fetch(
+            "{% url 'get_location' booking.pk %}"
+        )
+
+        .then(
+            response => response.json()
+        )
+
+        .then(
+            data => {
+
+                if (!data.success) {
+                    return;
+                }
+
+
+                // ==============================
+                // UPDATE STATUS
+                // ==============================
+
+                const status =
+                    document.getElementById(
+                        "tracking-status"
+                    );
+
+
+                if (data.tracking_active) {
+
+                    status.innerHTML =
+                        '<span class="active-badge">' +
+                        '🟢 Location Sharing Active' +
+                        '</span>';
+
+                } else {
+
+                    status.innerHTML =
+                        '<span class="inactive-badge">' +
+                        '⚪ Not Active' +
+                        '</span>';
+
+                }
+
+
+                // ==============================
+                // UPDATE LOCATION
+                // ==============================
+
+                if (
+                    data.latitude !== null &&
+                    data.longitude !== null
+                ) {
+
+                    updateMapLocation(
+                        data.latitude,
+                        data.longitude
+                    );
+
+
+                    if (data.updated_at) {
+
+                        const date =
+                            new Date(
+                                data.updated_at
+                            );
+
+
+                        document.getElementById(
+                            "updated-at"
+                        ).textContent =
+                            date.toLocaleString();
+
+                    }
+
+                }
+
+            }
+        )
+
+        .catch(
+            error => {
+
+                console.log(
+                    "Location update error:",
+                    error
+                );
+
+            }
+        );
+
+    }
+
+
+    // =========================================
+    // AUTO REFRESH EVERY 5 SECONDS
+    // =========================================
+
+    setInterval(
+        checkLatestLocation,
+        5000
+    );
+
+</script>
+
+{% endif %}
+
+{% endblock %}

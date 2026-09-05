@@ -1,0 +1,405 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+    .success-container {
+        min-height: 75vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        background: #f8fafc;
+    }
+
+    .success-card {
+        width: 100%;
+        max-width: 650px;
+        background: white;
+        border-radius: 20px;
+        padding: 45px 35px;
+        text-align: center;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.10);
+    }
+
+    .success-icon {
+        font-size: 65px;
+        margin-bottom: 15px;
+    }
+
+    .success-card h1 {
+        color: #198754;
+        font-weight: 700;
+    }
+
+    .success-card p {
+        color: #555;
+        font-size: 17px;
+        line-height: 1.6;
+    }
+
+    .travel-box {
+        margin-top: 30px;
+        padding: 25px;
+        background: #f1f8ff;
+        border-radius: 15px;
+        border: 1px solid #dceeff;
+    }
+
+    .travel-box h3 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .start-btn {
+        margin-top: 18px;
+        padding: 13px 25px;
+        background: #198754;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .start-btn:hover {
+        background: #146c43;
+    }
+
+    .start-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+
+    .location-status {
+        margin-top: 18px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .success-note {
+        margin-top: 25px;
+        font-size: 14px !important;
+        color: #777 !important;
+    }
+
+</style>
+
+
+<div class="success-container">
+
+    <div class="success-card">
+
+        <div class="success-icon">
+            
+        </div>
+
+        <h1>Booking Successful!</h1>
+
+        <p>
+            Your booking has been confirmed successfully.
+        </p>
+
+        <p>
+            Thank you for choosing
+            <strong>Travel Vista</strong>.
+        </p>
+
+
+        <!-- GPS TRACKING -->
+
+        <div class="travel-box">
+
+            <h3> Ready to Start Your Journey?</h3>
+
+            <p>
+                When your travel begins, you can share your
+                current location with Travel Vista.
+            </p>
+
+            <button
+                type="button"
+                class="start-btn"
+                id="startTravelBtn"
+                onclick="startTravel()"
+            >
+                Start Travel & Share Location
+            </button>
+
+            <div
+                id="locationStatus"
+                class="location-status"
+            ></div>
+
+        </div>
+
+
+        <p class="success-note">
+            Your location will only be shared after you
+            give permission through your browser.
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let watchId = null;
+
+
+/* =========================================
+   DJANGO CSRF TOKEN
+========================================= */
+
+function getCookie(name) {
+
+    let cookieValue = null;
+
+    if (document.cookie && document.cookie !== "") {
+
+        const cookies = document.cookie.split(";");
+
+        for (let cookie of cookies) {
+
+            cookie = cookie.trim();
+
+            if (cookie.substring(0, name.length + 1) === (name + "=")) {
+
+                cookieValue = decodeURIComponent(
+                    cookie.substring(name.length + 1)
+                );
+
+                break;
+            }
+        }
+    }
+
+    return cookieValue;
+}
+
+
+const csrftoken = getCookie("csrftoken");
+
+
+/* =========================================
+   START TRAVEL
+========================================= */
+
+function startTravel() {
+
+    const status =
+        document.getElementById("locationStatus");
+
+    const button =
+        document.getElementById("startTravelBtn");
+
+
+    if (!navigator.geolocation) {
+
+        status.innerHTML =
+            "Your browser does not support location services.";
+
+        return;
+    }
+
+
+    status.innerHTML =
+        " Requesting location permission...";
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+            const latitude =
+                position.coords.latitude;
+
+            const longitude =
+                position.coords.longitude;
+
+
+            status.innerHTML =
+                "Location permission granted.<br>📍 Sharing location...";
+
+
+            button.disabled = true;
+
+            button.innerHTML =
+                " Location Sharing Active";
+
+
+            /*
+             * Send first location immediately
+             */
+
+            sendLocation(
+                latitude,
+                longitude
+            );
+
+
+            /*
+             * Continue watching location
+             */
+
+            watchId = navigator.geolocation.watchPosition(
+
+                function(position) {
+
+                    const latitude =
+                        position.coords.latitude;
+
+                    const longitude =
+                        position.coords.longitude;
+
+
+                    sendLocation(
+                        latitude,
+                        longitude
+                    );
+
+                },
+
+                function(error) {
+
+                    console.log(
+                        "GPS Error:",
+                        error
+                    );
+
+                },
+
+                {
+                    enableHighAccuracy: true,
+                    maximumAge: 10000,
+                    timeout: 10000
+                }
+
+            );
+
+        },
+
+        function(error) {
+
+            if (error.code === 1) {
+
+                status.innerHTML =
+                    " Location permission was denied.";
+
+            }
+
+            else if (error.code === 2) {
+
+                status.innerHTML =
+                    " Your location could not be determined.";
+
+            }
+
+            else if (error.code === 3) {
+
+                status.innerHTML =
+                    " Location request timed out.";
+
+            }
+
+            else {
+
+                status.innerHTML =
+                    " Unable to get your location.";
+
+            }
+
+        },
+
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+
+    );
+
+}
+
+
+/* =========================================
+   SEND LOCATION TO DJANGO
+========================================= */
+
+function sendLocation(latitude, longitude) {
+
+    const url =
+        "{% url 'update_location' 0 %}"
+        .replace("/0/", "/{{ booking_id }}/");
+
+
+    const formData =
+        new FormData();
+
+    formData.append(
+        "latitude",
+        latitude
+    );
+
+    formData.append(
+        "longitude",
+        longitude
+    );
+
+
+    fetch(
+        url,
+        {
+            method: "POST",
+
+            headers: {
+                "X-CSRFToken": csrftoken
+            },
+
+            body: formData
+        }
+    )
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        if (data.success) {
+
+            console.log(
+                "Location saved successfully:",
+                latitude,
+                longitude
+            );
+
+        }
+
+        else {
+
+            console.log(
+                "Location update failed:",
+                data.message
+            );
+
+        }
+
+    })
+
+    .catch(error => {
+
+        console.log(
+            "Location sending error:",
+            error
+        );
+
+    });
+
+}
+
+</script>
+
+{% endblock %}

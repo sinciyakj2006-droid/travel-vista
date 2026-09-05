@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | Travel Vista</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7ff, #eef8f3);
+            color: #333;
+        }
+
+        /* ==============================
+           NAVBAR
+        ============================== */
+
+        .navbar {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #6c4ab6;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .home-btn {
+            color: #6c4ab6;
+            border: 1px solid #6c4ab6;
+        }
+
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* ==============================
+           MAIN
+        ============================== */
+
+        .profile-container {
+            max-width: 1050px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .profile-header h1 {
+            margin-bottom: 8px;
+            color: #4c3685;
+        }
+
+        .profile-header p {
+            color: #777;
+        }
+
+        /* ==============================
+           PROFILE CARD
+        ============================== */
+
+        .profile-card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                #6c4ab6,
+                #a8c69f
+            );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 60px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-info h2 {
+            margin-top: 0;
+            color: #4c3685;
+        }
+
+        .info-row {
+            display: flex;
+            margin: 12px 0;
+            font-size: 16px;
+        }
+
+        .info-label {
+            width: 130px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        /* ==============================
+           ACTION BUTTONS
+        ============================== */
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .action-card {
+            text-decoration: none;
+            background: white;
+            padding: 25px 18px;
+            border-radius: 18px;
+            text-align: center;
+            color: #333;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+            transition: 0.25s;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .action-icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .action-card h3 {
+            margin: 5px 0;
+            color: #4c3685;
+        }
+
+        .action-card p {
+            margin: 5px 0 0;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* ==============================
+           MESSAGES
+        ============================== */
+
+        .messages {
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            background: #e8f5e9;
+            color: #256029;
+            font-weight: 600;
+        }
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .nav-links {
+                gap: 5px;
+            }
+
+            .nav-btn {
+                padding: 8px 11px;
+                font-size: 13px;
+            }
+
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px 20px;
+            }
+
+            .info-row {
+                text-align: left;
+            }
+
+            .info-label {
+                width: 110px;
+            }
+
+            .actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ==============================
+         NAVBAR
+    ============================== -->
+
+    <nav class="navbar">
+
+        <a href="{% url 'home' %}" class="logo">
+             Travel Vista
+        </a>
+
+        <div class="nav-links">
+
+            <a href="{% url 'home' %}"
+               class="nav-btn home-btn">
+                Home
+            </a>
+
+            <a href="{% url 'logout' %}"
+               class="nav-btn logout-btn">
+                 Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ==============================
+         PROFILE CONTENT
+    ============================== -->
+
+    <main class="profile-container">
+
+        <div class="profile-header">
+
+            <h1> My Profile</h1>
+
+            <p>
+                Manage your Travel Vista account
+            </p>
+
+        </div>
+
+
+        <!-- Django Messages -->
+
+        {% if messages %}
+
+        <div class="messages">
+
+            {% for message in messages %}
+
+            <div class="message">
+                {{ message }}
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- ==============================
+             PROFILE CARD
+        ============================== -->
+
+        <div class="profile-card">
+
+            <div class="profile-avatar">
+
+                {{ profile_user.username|first|upper }}
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <h2>
+                    Welcome, {{ profile_user.username }}! 👋
+                </h2>
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Username:
+                    </span>
+
+                    <span class="info-value">
+                        {{ profile_user.username }}
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Email:
+                    </span>
+
+                    <span class="info-value">
+                        {{ profile_user.email }}
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Full Name:
+                    </span>
+
+                    <span class="info-value">
+
+                        {% if profile_user.first_name or profile_user.last_name %}
+
+                            {{ profile_user.first_name }}
+                            {{ profile_user.last_name }}
+
+                        {% else %}
+
+                            Not added yet
+
+                        {% endif %}
+
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Member Since:
+                    </span>
+
+                    <span class="info-value">
+                        {{ profile_user.date_joined|date:"d M Y" }}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==============================
+             PROFILE ACTIONS
+        ============================== -->
+
+        <div class="actions">
+
+
+            <!-- EDIT PROFILE -->
+
+            <a href="{% url 'edit_profile' %}"
+               class="action-card">
+
+                <div class="action-icon">
+                    
+                </div>
+
+                <h3>
+                    Edit Profile
+                </h3>
+
+                <p>
+                    Update your personal information
+                </p>
+
+            </a>
+
+
+            <!-- CHANGE PASSWORD -->
+
+            <a href="{% url 'change_password' %}"
+               class="action-card">
+
+                <div class="action-icon">
+                    
+                </div>
+
+                <h3>
+                    Change Password
+                </h3>
+
+                <p>
+                    Update your account password
+                </p>
+
+            </a>
+
+
+            <!-- MY BOOKINGS -->
+
+            <a href="{% url 'my_bookings' %}"
+               class="action-card">
+
+                <div class="action-icon">
+                    
+                </div>
+
+                <h3>
+                    My Bookings
+                </h3>
+
+                <p>
+                    View your travel bookings
+                </p>
+
+            </a>
+
+
+            <!-- DESTINATIONS -->
+
+            <a href="{% url 'destination_list' %}"
+               class="action-card">
+
+                <div class="action-icon">
+                    
+                </div>
+
+                <h3>
+                    Explore Destinations
+                </h3>
+
+                <p>
+                    Find your next destination
+                </p>
+
+            </a>
+
+
+            <!-- TOUR PACKAGES -->
+
+            <a href="{% url 'tour_packages' %}"
+               class="action-card">
+
+                <div class="action-icon">
+                    
+                </div>
+
+                <h3>
+                    Tour Packages
+                </h3>
+
+                <p>
+                    Explore available packages
+                </p>
+
+            </a>
+
+
+            <!-- HOME -->
+
+            <a href="{% url 'home' %}"
+               class="action-card">
+
+                <div class="action-icon">
+                    
+                </div>
+
+                <h3>
+                    Back to Home
+                </h3>
+
+                <p>
+                    Continue exploring Travel Vista
+                </p>
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- ==============================
+         FOOTER
+    ============================== -->
+
+    <footer>
+
+        © 2026 Travel Vista
+        · Explore. Travel. Experience.
+
+    </footer>
+
+</body>
+</html>

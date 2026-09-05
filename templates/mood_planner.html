@@ -1,0 +1,606 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Mood Travel Planner | Travel Vista</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #FCFAFF;
+        color: #333333;
+    }
+
+    /* ================= HEADER ================= */
+
+    .header {
+        text-align: center;
+        padding: 60px 20px 40px;
+    }
+
+    .header p {
+        color: #A8C69F;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        margin-bottom: 12px;
+    }
+
+    .header h1 {
+        font-size: 42px;
+        margin: 0 0 12px;
+        color: #6C4AB6;
+    }
+
+    .header span {
+        color: #666666;
+        font-size: 16px;
+    }
+
+
+    /* ================= MOOD SECTION ================= */
+
+    .mood-section {
+        width: 90%;
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .mood-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    .mood-card {
+        text-decoration: none;
+        background: #ffffff;
+        color: #333333;
+
+        border: 2px solid #A8C69F;
+        border-radius: 22px;
+
+        padding: 30px 20px;
+        text-align: center;
+
+        transition: all 0.3s ease;
+
+        box-shadow: 0 5px 18px rgba(108, 74, 182, 0.06);
+    }
+
+    .mood-card:hover {
+        background: #E8DDF8;
+        border-color: #6C4AB6;
+        transform: translateY(-7px);
+        box-shadow: 0 12px 28px rgba(108, 74, 182, 0.15);
+    }
+
+    .mood-icon {
+        width: 65px;
+        height: 65px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: 0 auto 15px;
+
+        background: #E8F0E5;
+        border-radius: 50%;
+
+        font-size: 32px;
+    }
+
+    .mood-card h3 {
+        margin: 5px 0 8px;
+        font-size: 23px;
+        color: #6C4AB6;
+    }
+
+    .mood-card p {
+        margin: 0;
+        color: #666666;
+        font-size: 14px;
+    }
+
+
+    /* ================= SELECTED MOOD ================= */
+
+    .selected {
+        background: #6C4AB6 !important;
+        color: #ffffff !important;
+        border-color: #A8C69F !important;
+    }
+
+    .selected h3,
+    .selected p {
+        color: #ffffff !important;
+    }
+
+    .selected .mood-icon {
+        background: #A8C69F;
+    }
+
+
+    /* ================= RESULTS ================= */
+
+    .results {
+        width: 90%;
+        max-width: 1200px;
+        margin: 65px auto 80px;
+    }
+
+    .results-title {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .results-title h2 {
+        color: #6C4AB6;
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+
+    .results-title p {
+        color: #777777;
+        margin: 0;
+    }
+
+    .results-title span {
+        color: #6C4AB6;
+        font-weight: bold;
+    }
+
+
+    /* ================= DESTINATION GRID ================= */
+
+    .destination-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+    }
+
+    .destination-card {
+        background: #ffffff;
+
+        border: 2px solid #A8C69F;
+        border-radius: 20px;
+
+        overflow: hidden;
+
+        transition: all 0.3s ease;
+
+        box-shadow: 0 5px 18px rgba(108, 74, 182, 0.07);
+    }
+
+    .destination-card:hover {
+        transform: translateY(-8px);
+        border-color: #6C4AB6;
+        box-shadow: 0 15px 30px rgba(108, 74, 182, 0.15);
+    }
+
+    .destination-card img {
+        width: 100%;
+        height: 230px;
+
+        object-fit: cover;
+        display: block;
+    }
+
+    .destination-content {
+        padding: 22px;
+    }
+
+    .destination-content h3 {
+        color: #6C4AB6;
+        font-size: 23px;
+        margin: 0 0 8px;
+    }
+
+    .location {
+        color: #777777;
+        margin-bottom: 12px;
+        font-size: 14px;
+    }
+
+    .description {
+        color: #666666;
+        line-height: 1.6;
+        font-size: 14px;
+        min-height: 45px;
+    }
+
+    .budget {
+    color: #6C4AB6;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 0;
+    line-height: 1.4;
+    transform: translateY(-15px);
+}
+
+.explore-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 10px 18px;
+    background: #6C4AB6;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.explore-btn:hover {
+    background: #A8C69F;
+    color: #333333;
+}
+
+
+    /* ================= NO RESULTS ================= */
+
+    .no-results {
+        text-align: center;
+
+        padding: 55px 20px;
+
+        background: #ffffff;
+
+        border: 2px solid #A8C69F;
+        border-radius: 20px;
+
+        color: #6C4AB6;
+    }
+
+    .no-results h2 {
+        margin-bottom: 10px;
+    }
+
+    .no-results p {
+        color: #666666;
+    }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 900px) {
+
+        .mood-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .destination-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+        .header {
+            padding: 45px 15px 30px;
+        }
+
+        .header h1 {
+            font-size: 30px;
+        }
+
+        .mood-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .destination-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .results-title h2 {
+            font-size: 25px;
+        }
+
+    }
+
+    .mood-card {
+    background: #6C4AB6 !important;
+    border: 2px solid #6C4AB6 !important;
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+}
+
+.mood-card h3,
+.mood-card p {
+    color: #ffffff !important;
+}
+
+/* Hover */
+.mood-card:hover {
+    background: #8B5CF6 !important;
+    border-color: #8B5CF6 !important;
+}
+
+.mood-card:hover h3,
+.mood-card:hover p {
+    color: #ffffff !important;
+}
+
+/* Selected */
+.mood-card.selected {
+    background: #9B6DFF !important;
+    border-color: #9B6DFF !important;
+}
+
+.mood-card.selected h3,
+.mood-card.selected p {
+    color: #ffffff !important;
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<section class="header">
+
+
+<p>TRAVEL VISTA</p>
+
+<h1>Where Do You Want To Go?</h1>
+
+<span>
+    Tell us your mood and we'll find destinations for you.
+</span>
+
+
+</section>
+
+<!-- ================= MOODS ================= -->
+
+<section class="mood-section">
+
+
+<div class="mood-grid">
+
+
+    <!-- RELAX -->
+
+    <a
+        href="?mood=Relax"
+        class="mood-card {% if selected_mood == 'Relax' %}selected{% endif %}"
+    >
+
+       
+
+        <h3>Relax</h3>
+
+        <p>Peaceful & refreshing</p>
+
+    </a>
+
+
+
+    <!-- ADVENTURE -->
+
+    <a
+        href="?mood=Adventure"
+        class="mood-card {% if selected_mood == 'Adventure' %}selected{% endif %}"
+    >
+
+
+        <h3>Adventure</h3>
+
+        <p>Exciting & thrilling</p>
+
+    </a>
+
+
+
+    <!-- FAMILY -->
+
+    <a
+        href="?mood=Family"
+        class="mood-card {% if selected_mood == 'Family' %}selected{% endif %}"
+    >
+
+        
+
+        <h3>Family</h3>
+
+        <p>Fun for everyone</p>
+
+    </a>
+
+
+
+    <!-- ROMANTIC -->
+
+    <a
+        href="?mood=Romantic"
+        class="mood-card {% if selected_mood == 'Romantic' %}selected{% endif %}"
+    >
+
+
+        <h3>Romantic</h3>
+
+        <p>Beautiful moments</p>
+
+    </a>
+
+
+
+    <!-- NATURE -->
+
+    <a
+        href="?mood=Nature"
+        class="mood-card {% if selected_mood == 'Nature' %}selected{% endif %}"
+    >
+
+        
+
+        <h3>Nature</h3>
+
+        <p>Green & peaceful</p>
+
+    </a>
+
+
+
+    <!-- STUDENT -->
+
+    <a
+        href="?mood=Student"
+        class="mood-card {% if selected_mood == 'Student' %}selected{% endif %}"
+    >
+
+      
+
+        <h3>Student</h3>
+
+        <p>Affordable & fun</p>
+
+    </a>
+
+
+</div>
+
+
+</section>
+
+<!-- ================= RESULTS ================= -->
+
+{% if selected_mood %}
+
+<section class="results" id="mood-results">
+
+
+<div class="results-title">
+
+    <h2>
+        Destinations for
+        <span>{{ selected_mood }}</span>
+    </h2>
+
+    <p>
+        Explore destinations that match your travel mood.
+    </p>
+
+</div>
+
+
+
+{% if destinations %}
+
+    <div class="destination-grid">
+
+
+        {% for destination in destinations %}
+
+            <div class="destination-card">
+
+
+                {% if destination.image %}
+
+                    <img
+                        src="{{ destination.image.url }}"
+                        alt="{{ destination.name }}"
+                    >
+
+                {% endif %}
+
+
+
+                <div class="destination-content">
+
+                    <h3>
+                        {{ destination.name }}
+                    </h3>
+
+
+                    <div class="location">
+                         {{ destination.location }}
+                    </div>
+
+
+                    <p class="description">
+                        {{ destination.description|truncatewords:18 }}
+                    </p>
+
+
+                    <div class="budget">
+                        ₹{{ destination.budget }}
+                    </div>
+
+
+                    <a
+                        href="{% url 'destination_detail' destination.pk %}"
+                        class="explore-btn"
+                    >
+                        Explore →
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        {% endfor %}
+
+
+    </div>
+
+
+{% else %}
+
+    <div class="no-results">
+
+        <h2>
+            No destinations found!
+        </h2>
+
+        <p>
+            We don't have destinations for this mood yet.
+        </p>
+
+    </div>
+
+{% endif %}
+
+
+</section>
+
+{% endif %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const resultsSection = document.getElementById("mood-results");
+
+    {% if selected_mood %}
+        if (resultsSection) {
+            setTimeout(function () {
+                resultsSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }, 300);
+        }
+    {% endif %}
+
+});
+</script>
+
+{% endblock %}

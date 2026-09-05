@@ -1,0 +1,678 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Destinations | Travel Vista
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* ================= PAGE HEADER ================= */
+
+    .page-header {
+        text-align: center;
+        padding: 55px 20px 30px;
+    }
+
+    .page-header p {
+        color: #A8C69F;
+        letter-spacing: 2px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .page-header h1 {
+        font-size: 42px;
+        margin: 10px 0;
+        color: #6C4AB6;
+    }
+
+    .page-header span {
+        color: #6C4AB6;
+    }
+
+
+    /* ================= SEARCH BOX ================= */
+
+    .search-section {
+        width: 90%;
+        max-width: 1100px;
+        margin: 0 auto 40px;
+    }
+
+    .search-box {
+        background: #A8C69F;
+        padding: 25px;
+        border-radius: 20px;
+    }
+
+    .search-form {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr auto;
+        gap: 12px;
+    }
+
+    .search-form input,
+    .search-form select {
+
+        width: 100%;
+        padding: 13px 15px;
+
+        border: 2px solid #ffffff;
+        border-radius: 10px;
+
+        background: #ffffff;
+        color: #6C4AB6;
+
+        font-size: 15px;
+        outline: none;
+    }
+
+    .search-form input::placeholder {
+        color: #6C4AB6;
+    }
+
+    .search-form input:focus,
+    .search-form select:focus {
+        border-color: #6C4AB6;
+    }
+
+
+    /* ================= SEARCH BUTTON ================= */
+
+    .search-btn {
+
+        border: none;
+
+        padding: 13px 22px;
+
+        border-radius: 10px;
+
+        background: #6C4AB6;
+        color: #ffffff;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+    }
+
+    .search-btn:hover {
+        background: #ffffff;
+        color: #6C4AB6;
+    }
+
+
+    /* ================= CLEAR BUTTON ================= */
+
+    .clear-btn {
+
+        display: inline-block;
+
+        margin-top: 12px;
+
+        text-decoration: none;
+
+        color: #6C4AB6;
+
+        font-size: 14px;
+
+        font-weight: bold;
+    }
+
+    .clear-btn:hover {
+        color: #ffffff;
+    }
+
+
+    /* ================= DESTINATION GRID ================= */
+
+    .destination-container {
+
+        width: 90%;
+        max-width: 1200px;
+
+        margin: auto;
+
+        padding-bottom: 60px;
+    }
+
+    .destination-grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 25px;
+    }
+
+
+    /* ================= DESTINATION CARD ================= */
+
+    .destination-card {
+
+        background: #ffffff;
+
+        border: 2px solid #A8C69F;
+
+        border-radius: 20px;
+
+        overflow: hidden;
+
+        transition: 0.3s ease;
+
+        height: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+    }
+
+    .destination-card:hover {
+
+        transform: translateY(-8px);
+
+        border-color: #6C4AB6;
+    }
+
+
+    /* ================= IMAGE ================= */
+
+    .destination-image {
+
+        width: 100%;
+
+        height: 250px;
+
+        object-fit: cover;
+
+        display: block;
+    }
+
+
+    /* ================= CARD CONTENT ================= */
+
+    .destination-content {
+
+    padding: 22px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+    min-height: 0;
+}
+
+    .destination-content h2 {
+
+        margin: 0 0 8px;
+
+        font-size: 25px;
+
+        color: #6C4AB6;
+
+        min-height: 30px;
+    }
+
+
+    /* ================= LOCATION ================= */
+
+    .location {
+
+        color: #6C4AB6;
+
+        margin-bottom: 12px;
+
+        font-size: 15px;
+
+        min-height: 23px;
+    }
+
+
+  
+
+/* ================= MOOD ================= */
+
+.mood {
+
+    display: inline-block !important;
+
+    margin-top: 10px !important;
+
+    margin-bottom: 0 !important;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    background: #A8C69F;
+
+    color: #6C4AB6;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    width: fit-content;
+}
+ 
+
+/* ================= DESTINATION FOOTER ================= */
+
+.destination-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 8px;
+    min-height: 70px;
+}
+
+ <!-- BUDGET -->
+
+<select name="budget">
+
+    <option value="">
+        Any Budget
+    </option>
+
+    <option
+        value="20000"
+        {% if selected_budget == "20000" %}selected{% endif %}
+    >
+        Above ₹20,000
+    </option>
+
+    <option
+        value="30000"
+        {% if selected_budget == "30000" %}selected{% endif %}
+    >
+        Above ₹30,000
+    </option>
+
+    <option
+        value="50000"
+        {% if selected_budget == "50000" %}selected{% endif %}
+    >
+        Above ₹50,000
+    </option>
+
+    <option
+        value="75000"
+        {% if selected_budget == "75000" %}selected{% endif %}
+    >
+        Above ₹75,000
+    </option>
+
+    <option
+        value="100000"
+        {% if selected_budget == "100000" %}selected{% endif %}
+    >
+        Above ₹1,00,000
+    </option>
+
+</select>
+
+    /* ================= EXPLORE BUTTON ================= */
+
+    .explore-btn {
+
+        text-decoration: none;
+
+        padding: 10px 16px;
+
+        border-radius: 10px;
+
+        background: #6C4AB6;
+
+        color: #ffffff;
+
+        font-size: 14px;
+
+        font-weight: bold;
+
+        transition: 0.3s;
+    }
+
+    .explore-btn:hover {
+
+        background: #A8C69F;
+
+        color: #6C4AB6;
+    }
+
+
+    /* ================= NO RESULTS ================= */
+
+    .empty-message {
+
+        text-align: center;
+
+        padding: 60px 20px;
+
+        color: #6C4AB6;
+    }
+
+    .empty-message h2 {
+        color: #6C4AB6;
+    }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 900px) {
+
+        .destination-grid {
+
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .search-form {
+
+            grid-template-columns: 1fr 1fr;
+        }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+        .destination-grid {
+
+            grid-template-columns: 1fr;
+        }
+
+        .search-form {
+
+            grid-template-columns: 1fr;
+        }
+
+        .page-header h1 {
+
+            font-size: 32px;
+        }
+
+    }
+
+</style>
+
+
+<!-- ================= PAGE HEADER ================= -->
+
+<section class="page-header">
+
+    <p>
+        EXPLORE THE WORLD
+    </p>
+
+    <h1>
+        Our Destinations
+    </h1>
+
+    <span>
+        Find the perfect destination for your journey.
+    </span>
+
+</section>
+
+
+
+<!-- ================= SEARCH & FILTER ================= -->
+
+<section class="search-section">
+
+    <div class="search-box">
+
+        <form method="GET" class="search-form">
+
+
+            <!-- SEARCH -->
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search destination or location..."
+                value="{{ search }}"
+            >
+
+
+
+            <!-- MOOD -->
+
+            <select name="mood">
+
+                <option value="">
+                    All Moods
+                </option>
+
+                <option
+                    value="Relax"
+                    {% if selected_mood == "Relax" %}selected{% endif %}
+                >
+                    Relax
+                </option>
+
+                <option
+                    value="Adventure"
+                    {% if selected_mood == "Adventure" %}selected{% endif %}
+                >
+                    Adventure
+                </option>
+
+                <option
+                    value="Family"
+                    {% if selected_mood == "Family" %}selected{% endif %}
+                >
+                    Family
+                </option>
+
+                <option
+                    value="Romantic"
+                    {% if selected_mood == "Romantic" %}selected{% endif %}
+                >
+                    Romantic
+                </option>
+
+                <option
+                    value="Nature"
+                    {% if selected_mood == "Nature" %}selected{% endif %}
+                >
+                    Nature
+                </option>
+
+            </select>
+
+
+
+            <!-- BUDGET -->
+
+            <select name="budget">
+
+                <option value="">
+                    Any Budget
+                </option>
+
+                <option
+                    value="20000"
+                    {% if selected_budget == "20000" %}selected{% endif %}
+                >
+                    Under ₹20,000
+                </option>
+
+                <option
+                    value="30000"
+                    {% if selected_budget == "30000" %}selected{% endif %}
+                >
+                    Under ₹30,000
+                </option>
+
+                <option
+                    value="50000"
+                    {% if selected_budget == "50000" %}selected{% endif %}
+                >
+                    Under ₹50,000
+                </option>
+
+                <option
+                    value="75000"
+                    {% if selected_budget == "75000" %}selected{% endif %}
+                >
+                    Under ₹75,000
+                </option>
+
+                <option
+                    value="100000"
+                    {% if selected_budget == "100000" %}selected{% endif %}
+                >
+                    Under ₹1,00,000
+                </option>
+
+            </select>
+
+
+
+            <!-- SEARCH BUTTON -->
+
+            <button
+                type="submit"
+                class="search-btn"
+            >
+
+                Search
+
+            </button>
+
+        </form>
+
+
+
+        <!-- CLEAR FILTERS -->
+
+        {% if search or selected_mood or selected_budget %}
+
+            <a
+                href="{% url 'destination_list' %}"
+                class="clear-btn"
+            >
+
+                <i class="bi bi-x-circle"></i>
+                Clear Filters
+
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= DESTINATIONS ================= -->
+
+<section class="destination-container">
+
+    {% if destinations %}
+
+        <div class="destination-grid">
+
+            {% for destination in destinations %}
+
+                <div class="destination-card">
+
+                    <!-- IMAGE -->
+                    <img
+                        src="{{ destination.image.url }}"
+                        alt="{{ destination.name }}"
+                        class="destination-image"
+                    >
+
+                    <!-- NORMAL CARD CONTENT -->
+                    <div class="destination-content">
+
+                        <h2>
+                            {{ destination.name }}
+                        </h2>
+
+                        <div class="location">
+                            {{ destination.location }}
+                        </div>
+
+                        {% if destination.mood %}
+                            <span class="mood">
+                                {{ destination.mood }}
+                            </span>
+                        {% endif %}
+
+                        <div class="destination-footer">
+
+    <div class="budget" style="position: relative; top: -12px;">
+        ₹{{ destination.budget }}
+    </div>
+
+    <a href="{% url 'destination_detail' destination.pk %}"
+       class="explore-btn">
+        Explore →
+    </a>
+
+</div>
+
+                    </div>
+
+                    <!-- HOVER INFORMATION -->
+                    <div class="destination-hover">
+
+                        <h3>
+                            {{ destination.name }}
+                        </h3>
+
+                        <p>
+                            {{ destination.description }}
+                        </p>
+
+                        <a
+                            href="{% url 'destination_detail' destination.pk %}"
+                        >
+                            View Details
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-message">
+
+            <h2>
+                No destinations found !!
+            </h2>
+
+            <p>
+                Try another destination, mood or budget.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+                  
+{% endblock %}

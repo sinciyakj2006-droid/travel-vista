@@ -1,0 +1,1002 @@
+{% extends "base.html" %}
+
+{% block title %}Solo Trip | Travel Vista{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* =========================================
+   PAGE BACKGROUND
+========================================= */
+
+body {
+    background: #f7fbf9;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.solo-hero {
+    min-height: 480px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    color: white;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(0, 55, 45, .62),
+            rgba(0, 30, 25, .76)
+        ),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+}
+
+.solo-hero-content {
+    max-width: 850px;
+    padding: 30px 20px;
+}
+
+.solo-badge {
+    display: inline-block;
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.3);
+
+    margin-bottom: 18px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.solo-hero h1 {
+    font-size: 58px;
+    font-weight: 800;
+
+    margin-bottom: 15px;
+}
+
+.solo-hero p {
+    font-size: 19px;
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   HERO BUTTON
+========================================= */
+
+.solo-btn {
+    display: inline-block;
+
+    padding: 13px 30px;
+
+    border-radius: 12px;
+
+    background: #6C4AB6;
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    transition: .3s ease;
+}
+
+.solo-btn:hover {
+    background: #55359A;
+    color: white;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.intro {
+    padding: 55px 20px 30px;
+
+    text-align: center;
+}
+
+.section-title {
+    color: #6C4AB6;
+
+    font-size: 34px;
+    font-weight: 800;
+
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    max-width: 720px;
+
+    margin: auto;
+
+    color: #6d7c76;
+
+    line-height: 1.7;
+}
+
+.intro-box {
+    max-width: 900px;
+
+    margin: 30px auto 0;
+
+    padding: 25px 30px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    border-left: 5px solid #0D8B9A;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.07);
+
+    color: #566660;
+    line-height: 1.7;
+}
+
+.intro-box strong {
+    color: #6C4AB6;
+}
+
+
+/* =========================================
+   FEATURES
+========================================= */
+
+.features {
+    padding: 35px 20px 65px;
+}
+
+.feature-grid {
+    max-width: 1150px;
+
+    margin: 35px auto 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    /* IMPORTANT:
+       Prevents cards from stretching */
+    align-items: start;
+}
+
+.feature-card {
+    background: white;
+
+    padding: 28px 22px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.06);
+
+    transition: .35s ease;
+
+    /* IMPORTANT */
+    height: auto;
+    align-self: start;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 16px 35px rgba(0,0,0,.11);
+}
+
+
+/* =========================================
+   FEATURE ICON
+========================================= */
+
+.feature-icon {
+    width: 62px;
+    height: 62px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e7f7f4;
+
+    font-size: 28px;
+
+    color: #0D8B9A;
+}
+
+.feature-card h4 {
+    color: #6C4AB6;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    color: #728079;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   DESTINATIONS SECTION
+========================================= */
+
+.destinations {
+    background: #edf7f3;
+
+    padding: 55px 20px 70px;
+}
+
+.destination-grid {
+    max-width: 1200px;
+
+    margin: 35px auto 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 24px;
+
+    /* IMPORTANT */
+    align-items: start;
+}
+
+
+/* =========================================
+   DESTINATION CARD
+========================================= */
+
+.destination-card {
+    background: white;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+
+    transition: .35s ease;
+
+    /* IMPORTANT:
+       Removes large blank space */
+    height: auto;
+
+    align-self: start;
+}
+
+.destination-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 18px 40px rgba(0,0,0,.14);
+}
+
+
+/* =========================================
+   DESTINATION IMAGE
+========================================= */
+
+.destination-img {
+    width: 100%;
+
+    height: 215px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background: #dfeee9;
+}
+
+.destination-img img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: .5s ease;
+}
+
+.destination-card:hover img {
+    transform: scale(1.08);
+}
+
+
+/* =========================================
+   DESTINATION BADGE
+========================================= */
+
+.badge {
+    position: absolute;
+
+    top: 14px;
+    left: 14px;
+
+    background: white;
+
+    color: #6C4AB6;
+
+    padding: 6px 13px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,.08);
+}
+
+
+/* =========================================
+   DESTINATION CONTENT
+========================================= */
+
+.destination-info {
+    padding: 20px;
+
+    height: auto;
+}
+
+.destination-info h3 {
+    color: #6C4AB6;
+
+    font-size: 23px;
+
+    font-weight: 750;
+
+    margin: 0 0 8px;
+}
+
+.destination-info p {
+    color: #75827d;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin: 0 0 18px;
+}
+
+
+/* =========================================
+   EXPLORE BUTTON
+========================================= */
+
+.explore-btn {
+    display: inline-block;
+
+    padding: 9px 18px;
+
+    border-radius: 10px;
+
+    background: #0D8B9A;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition: .3s ease;
+}
+
+.explore-btn:hover {
+    background: #08717D;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   CTA
+========================================= */
+
+.solo-cta {
+    max-width: 1150px;
+
+    min-height: 280px;
+
+    margin: 50px auto 70px;
+
+    border-radius: 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: white;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            rgba(0,65,52,.75),
+            rgba(0,35,30,.82)
+        ),
+        url("https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=85")
+        center/cover;
+}
+
+.solo-cta h2 {
+    font-size: 36px;
+
+    font-weight: 800;
+
+    margin-bottom: 12px;
+}
+
+.solo-cta p {
+    margin-bottom: 22px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .feature-grid,
+    .destination-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .solo-hero h1 {
+        font-size: 44px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .feature-grid,
+    .destination-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .solo-hero {
+        min-height: 420px;
+    }
+
+    .solo-hero h1 {
+        font-size: 36px;
+    }
+
+    .solo-hero p {
+        font-size: 16px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .solo-cta {
+        margin: 30px 15px 50px;
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="solo-hero">
+
+    <div class="solo-hero-content">
+
+        <span class="solo-badge">
+            FREEDOM • DISCOVER • EXPLORE
+        </span>
+
+        <h1>
+            Solo Trip
+        </h1>
+
+        <p>
+            Travel at your own pace, discover new places,
+            enjoy your freedom and create memories your way.
+        </p>
+
+        <a href="#destinations" class="solo-btn">
+            Explore Destinations
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     INTRO
+========================================= -->
+
+<section class="intro">
+
+    <h2 class="section-title">
+        Your Journey. Your Rules.
+    </h2>
+
+    <p class="section-subtitle">
+        Solo travel gives you the freedom to choose where to go,
+        what to explore and how you want to experience every moment.
+    </p>
+
+    <div class="intro-box">
+
+        <strong>
+            Travel alone. Discover more. Enjoy your freedom.
+        </strong>
+
+        <br>
+
+        Plan a journey that matches your interests and explore
+        destinations at your own pace.
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     FEATURES
+========================================= -->
+
+<section class="features">
+
+    <div class="text-center">
+
+        <h2 class="section-title">
+            Solo Travel Features
+        </h2>
+
+        <p class="section-subtitle">
+            Useful options to make your independent journey easier.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="bi bi-person-walking"></i>
+            </div>
+
+            <h4>
+                Travel Your Way
+            </h4>
+
+            <p>
+                Create your own schedule and explore at your preferred pace.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="bi bi-map"></i>
+            </div>
+
+            <h4>
+                Google Maps
+            </h4>
+
+            <p>
+                Find destinations and useful places while exploring.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="bi bi-geo-alt"></i>
+            </div>
+
+            <h4>
+                Location Support
+            </h4>
+
+            <p>
+                Optional location sharing can help with trip coordination.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="bi bi-camera"></i>
+            </div>
+
+            <h4>
+                Photography
+            </h4>
+
+            <p>
+                Capture the places and moments that make your journey special.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="bi bi-house-heart"></i>
+            </div>
+
+            <h4>
+                Stay Options
+            </h4>
+
+            <p>
+                Choose accommodation according to your travel plan.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="bi bi-calendar2-check"></i>
+            </div>
+
+            <h4>
+                Flexible Planning
+            </h4>
+
+            <p>
+                Build a trip around your own interests and preferences.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     DESTINATIONS
+========================================= -->
+
+<section class="destinations" id="destinations">
+
+    <div class="text-center">
+
+        <h2 class="section-title">
+            Popular Solo Destinations
+        </h2>
+
+        <p class="section-subtitle">
+            Places that are perfect for independent travellers.
+        </p>
+
+    </div>
+
+
+    <div class="destination-grid">
+
+
+        <!-- GOA -->
+
+        <div class="destination-card">
+
+            <div class="destination-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80"
+                    alt="Goa"
+                >
+
+                <span class="badge">
+                    Popular
+                </span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <h3>
+                    Goa
+                </h3>
+
+                <p>
+                    Beaches, sightseeing and relaxed solo experiences.
+                </p>
+
+                <a
+                    href="{% url 'destination_list' %}?search=Goa"
+                    class="explore-btn"
+                >
+                    Explore Goa →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- KERALA -->
+
+        <div class="destination-card">
+
+            <div class="destination-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80"
+                    alt="Kerala"
+                >
+
+                <span class="badge">
+                    Nature
+                </span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <h3>
+                    Kerala
+                </h3>
+
+                <p>
+                    Backwaters, hills and peaceful nature experiences.
+                </p>
+
+                <a
+                    href="{% url 'destination_list' %}?search=Kerala"
+                    class="explore-btn"
+                >
+                    Explore Kerala →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- MANALI -->
+
+        <div class="destination-card">
+
+            <div class="destination-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80"
+                    alt="Manali"
+                >
+
+                <span class="badge">
+                    Adventure
+                </span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <h3>
+                    Manali
+                </h3>
+
+                <p>
+                    Mountains, nature and refreshing adventures.
+                </p>
+
+                <a
+                    href="{% url 'destination_list' %}?search=Manali"
+                    class="explore-btn"
+                >
+                    Explore Manali →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- BALI -->
+
+        <div class="destination-card">
+
+            <div class="destination-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=80"
+                    alt="Bali"
+                >
+
+                <span class="badge">
+                    Explore
+                </span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <h3>
+                    Bali
+                </h3>
+
+                <p>
+                    Beaches, culture and beautiful island experiences.
+                </p>
+
+                <a
+                    href="{% url 'destination_list' %}?search=Bali"
+                    class="explore-btn"
+                >
+                    Explore Bali →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- SINGAPORE -->
+
+        <div class="destination-card">
+
+            <div class="destination-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=900&q=80"
+                    alt="Singapore"
+                >
+
+                <span class="badge">
+                    City
+                </span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <h3>
+                    Singapore
+                </h3>
+
+                <p>
+                    Explore modern attractions and vibrant city life.
+                </p>
+
+                <a
+                    href="{% url 'destination_list' %}?search=Singapore"
+                    class="explore-btn"
+                >
+                    Explore Singapore →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- KASHMIR -->
+
+        <div class="destination-card">
+
+            <div class="destination-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1666438239881-5ea3efaa0996?auto=format&fit=crop&w=900&q=80"
+                    alt="Kashmir"
+                >
+
+                <span class="badge">
+                    Scenic
+                </span>
+
+            </div>
+
+            <div class="destination-info">
+
+                <h3>
+                    Kashmir
+                </h3>
+
+                <p>
+                    Peaceful landscapes and beautiful mountain scenery.
+                </p>
+
+                <a
+                    href="{% url 'destination_list' %}?search=Kashmir"
+                    class="explore-btn"
+                >
+                    Explore Kashmir →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CTA
+========================================= -->
+
+<section class="solo-cta">
+
+    <div>
+
+        <h2>
+            Your Next Adventure Starts With You
+        </h2>
+
+        <p>
+            Choose a destination and start planning your solo journey.
+        </p>
+
+        <a
+            href="{% url 'destination_list' %}"
+            class="solo-btn"
+        >
+            Start Exploring →
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

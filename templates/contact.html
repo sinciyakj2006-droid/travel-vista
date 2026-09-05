@@ -1,0 +1,326 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Travel Vista{% endblock %}
+
+{% block content %}
+
+<section class="contact-page">
+
+    <!-- HERO -->
+    <div class="contact-hero">
+        <div class="contact-hero-content">
+            <span>TRAVEL VISTA</span>
+            <h1>Contact Us</h1>
+            <p>We’re here to help you plan your perfect journey.</p>
+        </div>
+    </div>
+
+
+    <!-- CONTACT SECTION -->
+    <div class="container contact-container">
+
+        <div class="row g-4 align-items-stretch">
+
+            <!-- LEFT SIDE -->
+            <div class="col-lg-5">
+
+                <div class="contact-info-card">
+
+                    <span class="contact-small-title">
+                        GET IN TOUCH
+                    </span>
+
+                    <h2>Let's Talk About Your Next Trip</h2>
+
+                    <p class="contact-intro">
+                        Have a question, need help with your travel plans,
+                        or want to know more about our destinations?
+                        Send us a message and our team will be happy to help.
+                    </p>
+
+
+                    <!-- VISIT US -->
+                    <div class="contact-info-item">
+
+                        <div class="contact-icon">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+
+                        <div>
+                            <h5>Visit Us</h5>
+
+                            <p>
+                                Baker Junction, Kottayam,<br>
+                                Kerala – 686001
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- CALL US -->
+                    <div class="contact-info-item">
+
+                        <div class="contact-icon">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+
+                        <div>
+                            <h5>Call Us</h5>
+
+                            <p>
+                                +91 98765 43210
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL US -->
+                    <div class="contact-info-item">
+
+                        <div class="contact-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+
+                        <div>
+                            <h5>Email Us</h5>
+
+                            <p>
+                                travelvistatourism2026@gmail.com
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- WORKING HOURS -->
+                    <div class="contact-info-item">
+
+                        <div class="contact-icon">
+                            <i class="bi bi-clock-fill"></i>
+                        </div>
+
+                        <div>
+                            <h5>Working Hours</h5>
+
+                            <p>
+                                Monday – Saturday<br>
+                                9:00 AM – 6:00 PM
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- contact-info-card CLOSED -->
+
+            </div>
+            <!-- LEFT SIDE CLOSED -->
+
+
+            <!-- RIGHT SIDE -->
+            <div class="col-lg-7">
+
+                <div class="contact-form-card">
+
+                    <div class="form-heading">
+
+                        <span>SEND A MESSAGE</span>
+
+                        <h2>How Can We Help?</h2>
+
+                        <p>
+                            Fill in the details below and we’ll get back to you.
+                        </p>
+
+                    </div>
+
+
+                    <!-- SUCCESS MESSAGE -->
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+                            <div class="contact-success">
+
+                                <span>
+                                    <i class="bi bi-check-lg"></i>
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Message Sent Successfully!
+                                    </strong>
+
+                                    <p>
+                                        {{ message }}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+
+                    <!-- CONTACT FORM -->
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label>Your Name</label>
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    class="form-control"
+                                    placeholder="Enter your name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-6 mb-3">
+
+                                <label>Email Address</label>
+
+                                <input
+                                    type="email"
+                                    name="email"
+                                    class="form-control"
+                                    placeholder="Enter your email"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label>Subject</label>
+
+                            <input
+                                type="text"
+                                name="subject"
+                                class="form-control"
+                                placeholder="What would you like to know?"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="mb-4">
+
+                            <label>Your Message</label>
+
+                            <textarea
+                                name="message"
+                                class="form-control"
+                                rows="6"
+                                placeholder="Write your message here..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="contact-send-btn"
+                        >
+
+                            Send Message
+
+                            <i class="bi bi-arrow-right"></i>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+            <!-- RIGHT SIDE CLOSED -->
+
+        </div>
+        <!-- MAIN ROW CLOSED -->
+
+
+        <!-- BOTTOM FEATURES -->
+        <div class="row mt-5 g-4">
+
+            <div class="col-md-4">
+
+                <div class="contact-feature">
+
+                    <div>
+                        <i class="bi bi-lightning-charge-fill"></i>
+                    </div>
+
+                    <h4>Quick Response</h4>
+
+                    <p>
+                        We aim to respond to your enquiries as soon as possible.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="contact-feature">
+
+                    <div>
+                        <i class="bi bi-compass-fill"></i>
+                    </div>
+
+                    <h4>Travel Guidance</h4>
+
+                    <p>
+                        Get helpful guidance for choosing your ideal destination.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="contact-feature">
+
+                    <div>
+                        <i class="bi bi-headset"></i>
+                    </div>
+
+                    <h4>Travel Support</h4>
+
+                    <p>
+                        We’re happy to assist you throughout your travel planning.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

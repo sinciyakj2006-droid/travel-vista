@@ -1,0 +1,1357 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Booking | Travel Vista{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="booking-container">
+
+        <!-- HEADER -->
+        <div class="booking-header">
+
+            <h1> Complete Your Booking</h1>
+
+            {% if package %}
+                <p>
+                    Booking Package:
+                    <strong>{{ package.name }}</strong>
+                </p>
+
+                <p> {{ package.destination.name }}</p>
+
+            {% elif destination %}
+
+                <p>
+                    Booking Destination:
+                    <strong>{{ destination.name }}</strong>
+                </p>
+
+                <p>{{ destination.location }}</p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- BOOKING FORM -->
+        <form method="POST" id="bookingForm">
+
+            {% csrf_token %}
+
+
+            <!-- ================= PERSONAL DETAILS ================= -->
+
+            <div class="form-section">
+
+                <h3> Personal Details</h3>
+
+                <div class="row">
+
+                    <!-- USERNAME -->
+                    <div class="col-md-6 mb-3">
+
+                        <label>Username</label>
+
+                        {{ form.username }}
+
+                        <div id="username-error" class="live-error"></div>
+
+                        {% if form.username.errors %}
+                            <div class="error">
+                                {{ form.username.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- FULL NAME -->
+                    <div class="col-md-6 mb-3">
+
+                        <label>Full Name</label>
+
+                        {{ form.full_name }}
+
+                        <div id="full-name-error" class="live-error"></div>
+
+                        {% if form.full_name.errors %}
+                            <div class="error">
+                                {{ form.full_name.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+                    <div class="col-md-6 mb-3">
+
+                        <label>Email</label>
+
+                        {{ form.email }}
+
+                        <div id="email-error" class="live-error"></div>
+
+                        {% if form.email.errors %}
+                            <div class="error">
+                                {{ form.email.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- PHONE -->
+                    <div class="col-md-6 mb-3">
+
+                        <label>Phone Number</label>
+
+                        {{ form.phone }}
+
+                        <div id="phone-error" class="live-error"></div>
+
+                        {% if form.phone.errors %}
+                            <div class="error">
+                                {{ form.phone.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- ADDRESS -->
+                    <div class="col-12 mb-3">
+
+                        <label>Address</label>
+
+                        {{ form.address }}
+
+                        <div id="address-error" class="live-error"></div>
+
+                        {% if form.address.errors %}
+                            <div class="error">
+                                {{ form.address.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= TRAVEL DETAILS ================= -->
+
+            <div class="form-section">
+
+                <h3>Travel Details</h3>
+
+                <div class="row">
+
+                    <!-- TRAVEL DATE -->
+                    <div class="col-md-6 mb-3">
+
+                        <label>Travel Date</label>
+
+                        {{ form.travel_date }}
+
+                        <div id="date-error" class="live-error"></div>
+
+                        {% if form.travel_date.errors %}
+                            <div class="error">
+                                {{ form.travel_date.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- NUMBER OF PEOPLE -->
+                    <div class="col-md-6 mb-3">
+
+                        <label>Number of People</label>
+
+                        {{ form.number_of_people }}
+
+                        <div id="people-error" class="live-error"></div>
+
+                        {% if form.number_of_people.errors %}
+                            <div class="error">
+                                {{ form.number_of_people.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    
+
+
+
+            <!-- ================= SPECIAL FEATURES ================= -->
+
+            <div class="form-section">
+
+                <h3> Special Travel Features</h3>
+                <div class="form-section">
+
+    
+
+    <!-- TRAVELING METHOD -->
+<div class="mb-4">
+    <label>Traveling Method</label>
+
+    <div class="travel-method-options">
+
+        {% for radio in form.travel_method %}
+
+            <label class="travel-method-card">
+
+                {{ radio.tag }}
+
+                <span>
+                    {{ radio.choice_label }}
+                </span>
+
+            </label>
+
+        {% endfor %}
+
+    </div>
+
+    {% if form.travel_method.errors %}
+        <div class="error">
+            {{ form.travel_method.errors }}
+        </div>
+    {% endif %}
+</div>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Guide Required</label>
+
+                        {{ form.guide_required }}
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Photography Required</label>
+
+                        {{ form.photography_required }}
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Google Map</label>
+
+                        {{ form.google_map_required }}
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Hospitality</label>
+
+                        {{ form.hospitality_required }}
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Airbnb</label>
+
+                        {{ form.airbnb_required }}
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>GPS Tracking</label>
+
+                        {{ form.gps_tracking_required }}
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>Travel With Strangers</label>
+
+                        {{ form.travel_with_strangers }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= KIDS FEATURES ================= -->
+
+            <div class="form-section">
+
+                <h3>Kids-Friendly Features</h3>
+
+                <p class="feature-help">
+                    Select the features you need for your kids.
+                </p>
+
+                <div class="kids-feature-options">
+
+                    <label class="kids-feature">
+
+                        <input
+                            type="checkbox"
+                            name="kids_features"
+                            value="kid_friendly_stay"
+                        >
+
+                        <span>Kid-Friendly Stay</span>
+
+                    </label>
+
+
+                    <label class="kids-feature">
+
+                        <input
+                            type="checkbox"
+                            name="kids_features"
+                            value="kid_friendly_food"
+                        >
+
+                        <span> Kid-Friendly Food</span>
+
+                    </label>
+
+
+                    <label class="kids-feature">
+
+                        <input
+                            type="checkbox"
+                            name="kids_features"
+                            value="comfortable_transport"
+                        >
+
+                        <span> Comfortable Transport</span>
+
+                    </label>
+
+
+                    <label class="kids-feature">
+
+                        <input
+                            type="checkbox"
+                            name="kids_features"
+                            value="kids_activities"
+                        >
+
+                        <span> Kids Activities</span>
+
+                    </label>
+
+
+                    <label class="kids-feature">
+
+                        <input
+                            type="checkbox"
+                            name="kids_features"
+                            value="medical_facilities"
+                        >
+
+                        <span>Nearby Medical Facility</span>
+
+                    </label>
+
+
+                    <label class="kids-feature">
+
+                        <input
+                            type="checkbox"
+                            name="kids_features"
+                            value="extra_bed"
+                        >
+
+                        <span>Extra Bed / Family Room</span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= EXTRA DETAILS ================= -->
+
+            <div class="form-section">
+
+                <h3>Extra Details</h3>
+
+                {{ form.extra_details }}
+
+            </div>
+
+
+
+            <!-- ================= PAYMENT ================= -->
+
+            <div class="form-section">
+
+                <h3> Payment Method</h3>
+
+                <label>Select Payment Method</label>
+
+                {{ form.payment_method }}
+
+                {% if form.payment_method.errors %}
+
+                    <div class="error">
+                        {{ form.payment_method.errors }}
+                    </div>
+
+                {% endif %}
+
+
+
+                <!-- UPI -->
+
+                <div id="upiBox" class="payment-box">
+
+                    <h4>UPI Payment</h4>
+
+                    <p>
+                        Scan the QR code using your UPI app.
+                    </p>
+
+                    <img
+                        src="{% static 'images/upi_qr.png' %}"
+                        alt="UPI QR Code"
+                        class="qr-code"
+                    >
+
+                    <p class="payment-note">
+                        After payment, click Confirm Booking.
+                    </p>
+
+                </div>
+
+
+
+                <!-- CARD -->
+
+                <div id="cardInfo" class="payment-box">
+
+                    <h4>Card Payment</h4>
+
+                    <p>
+                        Card payment option selected.
+                    </p>
+
+                    <p class="payment-note">
+                        Card payment gateway can be connected later.
+                    </p>
+
+                </div>
+
+
+
+                <!-- CASH -->
+
+                <div id="cashInfo" class="payment-box">
+
+                    <h4>Cash on Arrival</h4>
+
+                    <p>
+                        You can pay the booking amount when you arrive.
+                    </p>
+
+                    <p class="payment-note">
+                        Your payment status will remain pending until payment is received.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= ERRORS ================= -->
+
+            {% if form.non_field_errors %}
+
+                <div class="error-box">
+
+                    {{ form.non_field_errors }}
+
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- ================= CONFIRM ================= -->
+
+            <div class="text-center">
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                     Confirm Booking
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- ===================================================== -->
+<!-- CSS -->
+<!-- ===================================================== -->
+
+<style>
+
+.booking-container {
+    max-width: 900px;
+    margin: auto;
+}
+
+
+.booking-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+
+.booking-header h1 {
+    color: #6C4AB6;
+    font-weight: 700;
+}
+
+
+.booking-header p {
+    font-size: 17px;
+    color: #666;
+}
+
+
+.form-section {
+    background: #ffffff;
+    padding: 28px;
+    margin-bottom: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+
+.form-section h3 {
+    color: #6C4AB6;
+    margin-bottom: 22px;
+    font-weight: 600;
+}
+
+
+.form-section label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+    color: #444;
+}
+
+
+.form-control,
+.form-section input,
+.form-section textarea,
+.form-section select {
+
+    width: 100%;
+    padding: 11px 14px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    box-sizing: border-box;
+
+}
+
+
+.form-section textarea {
+    resize: vertical;
+}
+
+
+.payment-box {
+
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 22px;
+
+    background: #f7f5fc;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+}
+
+
+.payment-box h4 {
+
+    color: #6C4AB6;
+
+    margin-bottom: 10px;
+
+}
+
+
+.qr-code {
+
+    width: 220px;
+
+    max-width: 100%;
+
+    margin: 15px auto;
+
+    display: block;
+
+    border-radius: 10px;
+
+}
+
+
+.payment-note {
+
+    color: #666;
+
+    font-size: 14px;
+
+}
+
+
+.error {
+
+    color: #dc3545;
+
+    font-size: 14px;
+
+    margin-top: 5px;
+
+}
+
+
+.error-box {
+
+    color: #dc3545;
+
+    background: #fff0f0;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* LIVE VALIDATION */
+
+.live-error {
+
+    color: #dc3545;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+
+    min-height: 0;
+
+}
+
+
+.valid-input {
+
+    border: 2px solid #28a745 !important;
+
+}
+
+
+.invalid-input {
+
+    border: 2px solid #dc3545 !important;
+
+}
+
+
+/* =========================================
+   BOOKING BUTTON - BRIGHT PURPLE
+   ========================================= */
+
+.submit-btn {
+    border: none !important;
+
+    padding: 14px 35px !important;
+
+    background: #7B55D3 !important;
+
+    color: #ffffff !important;
+
+    border-radius: 12px !important;
+
+    font-size: 17px !important;
+
+    font-weight: 700 !important;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    box-shadow:
+        0 6px 18px rgba(108, 74, 182, 0.30);
+}
+
+
+.submit-btn:hover {
+    background: #6C4AB6 !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 24px rgba(108, 74, 182, 0.40);
+}
+
+
+/* =========================================
+   OTHER BOOKING FORM BUTTONS
+   ========================================= */
+
+.booking-container button,
+.booking-container .btn {
+    background: #7B55D3 !important;
+
+    color: #ffffff !important;
+
+    border: none !important;
+
+    border-radius: 10px !important;
+
+    font-weight: 700 !important;
+
+    transition: all 0.25s ease;
+}
+
+
+.booking-container button:hover,
+.booking-container .btn:hover {
+    background: #6C4AB6 !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+}
+
+
+
+
+
+@media (max-width: 768px) {
+
+    .form-section {
+
+        padding: 20px;
+
+    }
+
+    .booking-header h1 {
+
+        font-size: 30px;
+
+    }
+
+}
+
+</style>
+
+
+
+<!-- ===================================================== -->
+<!-- JAVASCRIPT -->
+<!-- ===================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =====================================================
+       PAYMENT METHOD
+       ===================================================== */
+
+    const paymentMethod =
+        document.getElementById("id_payment_method");
+
+    const upiBox =
+        document.getElementById("upiBox");
+
+    const cardInfo =
+        document.getElementById("cardInfo");
+
+    const cashInfo =
+        document.getElementById("cashInfo");
+
+
+    function showPaymentDetails() {
+
+        if (!paymentMethod) return;
+
+        upiBox.style.display = "none";
+        cardInfo.style.display = "none";
+        cashInfo.style.display = "none";
+
+
+        if (paymentMethod.value === "UPI") {
+
+            upiBox.style.display = "block";
+
+        }
+
+        else if (paymentMethod.value === "CARD") {
+
+            cardInfo.style.display = "block";
+
+        }
+
+        else if (paymentMethod.value === "CASH") {
+
+            cashInfo.style.display = "block";
+
+        }
+
+    }
+
+
+    if (paymentMethod) {
+
+        paymentMethod.addEventListener(
+            "change",
+            showPaymentDetails
+        );
+
+        showPaymentDetails();
+
+    }
+
+
+
+    /* =====================================================
+       LIVE VALIDATION FUNCTION
+       ===================================================== */
+
+    function setValidation(
+        input,
+        errorElement,
+        message
+    ) {
+
+        if (message) {
+
+            input.classList.remove("valid-input");
+
+            input.classList.add("invalid-input");
+
+            errorElement.innerText = message;
+
+        }
+
+        else {
+
+            input.classList.remove("invalid-input");
+
+            input.classList.add("valid-input");
+
+            errorElement.innerText = "";
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       USERNAME
+       ===================================================== */
+
+    const username =
+        document.getElementById("id_username");
+
+    const usernameError =
+        document.getElementById("username-error");
+
+
+    if (username) {
+
+        username.addEventListener("input", function () {
+
+            const value = this.value.trim();
+
+
+            if (value === "") {
+
+                setValidation(
+                    this,
+                    usernameError,
+                    "Username is required."
+                );
+
+            }
+
+            else if (value.length < 3) {
+
+                setValidation(
+                    this,
+                    usernameError,
+                    "Username must contain at least 3 characters."
+                );
+
+            }
+
+            else if (!/^[A-Za-z0-9_]+$/.test(value)) {
+
+                setValidation(
+                    this,
+                    usernameError,
+                    "Username can contain only letters, numbers and underscore."
+                );
+
+            }
+
+            else {
+
+                setValidation(
+                    this,
+                    usernameError,
+                    ""
+                );
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       FULL NAME
+       ===================================================== */
+
+    const fullName =
+        document.getElementById("id_full_name");
+
+    const fullNameError =
+        document.getElementById("full-name-error");
+
+
+    if (fullName) {
+
+        fullName.addEventListener("input", function () {
+
+            const value = this.value.trim();
+
+
+            if (value === "") {
+
+                setValidation(
+                    this,
+                    fullNameError,
+                    "Full name is required."
+                );
+
+            }
+
+            else if (value.length < 3) {
+
+                setValidation(
+                    this,
+                    fullNameError,
+                    "Full name must contain at least 3 characters."
+                );
+
+            }
+
+            else if (!/^[A-Za-z ]+$/.test(value)) {
+
+                setValidation(
+                    this,
+                    fullNameError,
+                    "Full name should contain only letters."
+                );
+
+            }
+
+            else {
+
+                setValidation(
+                    this,
+                    fullNameError,
+                    ""
+                );
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       EMAIL
+       ===================================================== */
+
+    const email =
+        document.getElementById("id_email");
+
+    const emailError =
+        document.getElementById("email-error");
+
+
+    if (email) {
+
+        email.addEventListener("input", function () {
+
+            const value = this.value.trim();
+
+
+            if (value === "") {
+
+                setValidation(
+                    this,
+                    emailError,
+                    "Email is required."
+                );
+
+            }
+
+            else if (
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+            ) {
+
+                setValidation(
+                    this,
+                    emailError,
+                    "Please enter a valid email address."
+                );
+
+            }
+
+            else {
+
+                setValidation(
+                    this,
+                    emailError,
+                    ""
+                );
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       PHONE
+       ===================================================== */
+
+    const phone =
+        document.getElementById("id_phone");
+
+    const phoneError =
+        document.getElementById("phone-error");
+
+
+    if (phone) {
+
+        phone.addEventListener("input", function () {
+
+            const value = this.value.trim();
+
+
+            if (value === "") {
+
+                setValidation(
+                    this,
+                    phoneError,
+                    "Phone number is required."
+                );
+
+            }
+
+            else if (!/^[0-9]+$/.test(value)) {
+
+                setValidation(
+                    this,
+                    phoneError,
+                    "Phone number must contain only digits."
+                );
+
+            }
+
+            else if (value.length !== 10) {
+
+                setValidation(
+                    this,
+                    phoneError,
+                    "Phone number must contain exactly 10 digits."
+                );
+
+            }
+
+            else if (!/^[6789]/.test(value)) {
+
+                setValidation(
+                    this,
+                    phoneError,
+                    "Please enter a valid Indian mobile number."
+                );
+
+            }
+
+            else {
+
+                setValidation(
+                    this,
+                    phoneError,
+                    ""
+                );
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       ADDRESS
+       ===================================================== */
+
+    const address =
+        document.getElementById("id_address");
+
+    const addressError =
+        document.getElementById("address-error");
+
+
+    if (address) {
+
+        address.addEventListener("input", function () {
+
+            const value = this.value.trim();
+
+
+            if (value === "") {
+
+                setValidation(
+                    this,
+                    addressError,
+                    "Address is required."
+                );
+
+            }
+
+            else if (value.length < 10) {
+
+                setValidation(
+                    this,
+                    addressError,
+                    "Please enter a complete address."
+                );
+
+            }
+
+            else {
+
+                setValidation(
+                    this,
+                    addressError,
+                    ""
+                );
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       NUMBER OF PEOPLE
+       ===================================================== */
+
+    const people =
+        document.getElementById("id_number_of_people");
+
+    const peopleError =
+        document.getElementById("people-error");
+
+
+    if (people) {
+
+        people.addEventListener("input", function () {
+
+            const value = this.value.trim();
+
+
+            if (value === "") {
+
+                setValidation(
+                    this,
+                    peopleError,
+                    "Number of people is required."
+                );
+
+            }
+
+            else if (parseInt(value) < 1) {
+
+                setValidation(
+                    this,
+                    peopleError,
+                    "Number of people must be at least 1."
+                );
+
+            }
+
+            else {
+
+                setValidation(
+                    this,
+                    peopleError,
+                    ""
+                );
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       TRAVEL DATE
+       ===================================================== */
+
+    const travelDate =
+        document.getElementById("id_travel_date");
+
+    const dateError =
+        document.getElementById("date-error");
+
+
+    if (travelDate) {
+
+        travelDate.addEventListener("change", function () {
+
+            const value = this.value;
+
+
+            if (value === "") {
+
+                setValidation(
+                    this,
+                    dateError,
+                    "Please select a travel date."
+                );
+
+                return;
+
+            }
+
+
+            const today =
+                new Date().toISOString().split("T")[0];
+
+
+            if (value < today) {
+
+                setValidation(
+                    this,
+                    dateError,
+                    "Travel date cannot be in the past."
+                );
+
+            }
+
+            else {
+
+                setValidation(
+                    this,
+                    dateError,
+                    ""
+                );
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       CONFIRM BUTTON
+       ===================================================== */
+
+    document
+        .getElementById("bookingForm")
+        .addEventListener("submit", function (event) {
+
+            /*
+             * Django forms.py will perform the final
+             * server-side validation.
+             *
+             * Live validation above is only for
+             * showing errors while typing.
+             */
+
+        });
+
+
+});
+
+</script>
+
+
+{% endblock %}
