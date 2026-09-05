@@ -63,4 +63,6 @@ urlpatterns = [
 ),
 
 path("customer-review/", views.customer_review, name="customer_review"),
+
+path("contact/success/", views.contact_success, name="contact_success"),
 ]

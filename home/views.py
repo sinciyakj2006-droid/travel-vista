@@ -833,38 +833,7 @@ def contact(request):
         subject = request.POST.get("subject")
         message = request.POST.get("message")
 
-        email_message = f"""
-New Contact Us Message
-
-Name: {name}
-Email: {email}
-Subject: {subject}
-
-Message:
-{message}
-"""
-
-        try:
-            send_mail(
-                subject=f"Travel Vista Enquiry - {subject}",
-                message=email_message,
-                from_email="travelvistatourism2026@gmail.com",
-                recipient_list=["travelvistatourism2026@gmail.com"],
-                fail_silently=False,
-            )
-
-            messages.success(
-                request,
-                "Your message has been sent successfully! We will get back to you soon."
-            )
-
-        except Exception:
-            messages.error(
-                request,
-                "Sorry, your message could not be sent. Please try again."
-            )
-
-        return render(request, "contact.html")
+        return redirect("contact_success")
 
     return render(request, "contact.html")
 
