@@ -73,7 +73,7 @@ Travel Vista
 
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[booking.email],
-                fail_silently=False,
+                fail_silently=True,
             )
 
             return render(
@@ -161,7 +161,7 @@ Travel Vista
 
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[booking.email],
-                fail_silently=False,
+                fail_silently=True,
             )
 
             return render(
