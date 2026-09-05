@@ -593,10 +593,10 @@
 
                     <!-- IMAGE -->
                     <img
-                        src="{{ destination.image.url }}"
-                        alt="{{ destination.name }}"
-                        class="destination-image"
-                    >
+    src="{% static 'images/destinations/' %}{{ destination.image.name|cut:'destinations/' }}"
+    alt="{{ destination.name }}"
+    class="destination-image"
+>
 
                     <!-- NORMAL CARD CONTENT -->
                     <div class="destination-content">
